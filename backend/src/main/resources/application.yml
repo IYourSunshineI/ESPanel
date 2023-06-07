@@ -1,0 +1,52 @@
+logging:
+  file.name: ./log/backend.log
+  level:
+    root: INFO
+    com.yoursunshine.backend: DEBUG
+  pattern:
+    level: r=%X{r} ip=%X{ip} u=%X{u} %5p
+
+spring:
+  datasource:
+    url: jdbc:h2:file:./database/db;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: admin
+    password: password
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+      open-in-view: false
+  web:
+    locale: en_GB
+    locale-resolver: fixed
+
+frontend:
+  url: http://localhost:4200
+
+management:
+  server:
+    port: 8081
+  endpoint:
+    shutdown:
+      enabled: true
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+    health:
+      probes:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - shutdown
+          - metrics
+          - env
+  prometheus:
+    metrics:
+      export:
+        enabled: true
