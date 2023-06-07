@@ -7,9 +7,22 @@
   height: 100%;
 }
 
-.modules-container {
+.objects-container{
   width: 100%;
-  max-width: calc(100vw - 300px);
-  height: calc(100vh - 60px - 96px);
-  margin: 40px + 96px 20px 20px 0px;
+  border-radius: 20px;
+  background: map-get($custom-colors, "container-light");
+  margin: 96px + 40px 20px 20px 0px;
+  overflow-y: scroll;
+
+  //no scrollbar
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1650px) {
+  .objects-container{
+    margin-top: 64px + 40px;
+  }
 }

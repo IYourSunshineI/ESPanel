@@ -3,13 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { ModulesComponent } from './components/modules/modules.component';
+import { ObjectComponent } from './components/object/object.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
-    ModulesComponent,
+    ObjectComponent,
   ],
   imports: [
     BrowserModule
