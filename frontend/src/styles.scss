@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+$custom-colors: (
+  "background": #FFF9EF,
+  "container-light": #EEE6D8,
+  "container-dark": #D3CCC0,
+  "dark-default": #56534E,
+);
+
+$headings-font-family: 'Inter';
+$font-family-base: 'Inter';
+$font-family-sans-serif: 'Inter';
+$font-family-monospace: 'Inter';
+$btn-font-family: 'Inter';
+$form-select-font-family: 'Inter';
+$form-control-font-family: 'Inter';
+$display-font-family: 'Inter';
+$input-btn-font-family: 'Inter';
+$input-font-family: 'Inter';
+$form-label-font-style: 'Inter';
+$form-check-label-color: map-get($custom-colors, "dark-default");
+$form-check-input-checked-color: map-get($custom-colors, "dark-default");
+$form-check-input-checked-bg-color: map-get($custom-colors, "dark-default");
+$form-check-input-bg: map-get($custom-colors, "foreground");
+$form-check-input-checked-border-color: map-get($custom-colors, "dark-default");
+$form-check-input-focus-border: none;
+$form-check-input-border-radius: 0.125rem;
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: map-get($custom-colors, "background") !important;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
