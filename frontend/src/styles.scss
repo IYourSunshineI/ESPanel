@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/scss/functions.scss";
+@import "../node_modules/bootstrap/scss/variables.scss";
+@import "../node_modules/bootstrap/scss/mixins.scss";
 
 $custom-colors: (
   "background": #FFF9EF,
@@ -6,6 +9,11 @@ $custom-colors: (
   "container-dark": #D3CCC0,
   "dark-default": #56534E,
 );
+
+$body-color: map-get($custom-colors, "dark-default");
+$headings-color: map-get($custom-colors, "dark-default");
+$form-text-color: map-get($custom-colors, "dark-default");
+$input-plaintext-color: map-get($custom-colors, "dark-inactive");
 
 $headings-font-family: 'Inter';
 $font-family-base: 'Inter';
@@ -26,6 +34,7 @@ $form-check-input-checked-border-color: map-get($custom-colors, "dark-default");
 $form-check-input-focus-border: none;
 $form-check-input-border-radius: 0.125rem;
 
+
 html, body {
   height: 100%;
   width: 100%;
@@ -40,3 +49,5 @@ html, body {
   padding: 0;
   box-sizing: border-box;
 }
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
