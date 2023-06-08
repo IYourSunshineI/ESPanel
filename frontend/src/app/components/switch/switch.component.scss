@@ -24,7 +24,7 @@
   right: 3px;
   bottom: 3px;
   border-radius: 20px;
-  background-color: map-get($custom-colors, "switch-inactive");
+  background-color: map-get($custom-colors, "container-dark");
   -webkit-transition: .4s;
   transition: .4s;
 }

@@ -44,5 +44,8 @@
     width: 100px;
     border-radius: 20px;
     background: map-get($custom-colors, "container-light");
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
