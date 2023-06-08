@@ -1,28 +1,28 @@
 @import "src/styles.scss";
 
-.content {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
+.main-container {
+  display: grid;
+  grid-template-columns: 250px auto;
+  grid-template-rows: max-content auto;
+  gap: 20px;
+  padding: 20px;
   height: 100%;
 }
 
-.objects-container{
-  width: 100%;
-  border-radius: 20px;
-  background: map-get($custom-colors, "container-light");
-  margin: 96px + 40px 20px 20px 0px;
-  overflow-y: scroll;
+.logo-container {
+  width: 250px;
 
-  //no scrollbar
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    display: none;
+  .logo {
+    width: 100%;
   }
 }
 
-@media screen and (max-width: 1650px) {
-  .objects-container{
-    margin-top: 64px + 40px;
-  }
+.sidebar-container {
+  border-radius: 20px;
+  background: map-get($custom-colors, "container-light");
+}
+
+.content-container {
+  border-radius: 20px;
+  background: map-get($custom-colors, "container-light");
 }
