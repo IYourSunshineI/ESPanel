@@ -50,4 +50,30 @@ html, body {
   box-sizing: border-box;
 }
 
+.icon-button {
+  width: 3rem;
+  height: 3rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  color: map-get($custom-colors, "dark-default");
+  align-items: center;
+  justify-content: center;
+  // remove default button styles
+  border: none;
+  outline: none;
+  background: none;
+
+  &:hover {
+    background: map-get($custom-colors, "container-light");
+  }
+
+  &:focus {
+    background: map-get($custom-colors, "container-light");
+  }
+
+  &:active {
+    background: map-get($custom-colors, "container-light");
+  }
+}
+
 @import "../node_modules/bootstrap/scss/bootstrap.scss";

@@ -1,0 +1,45 @@
+@import "src/styles.scss";
+
+.main-container {
+  padding: 20px;
+
+  border-radius: 20px;
+  background: map-get($custom-colors, "container-dark");
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  .right {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    .title {
+      font-weight: bold;
+      font-size: 1.5rem;
+      align-self: center;
+    }
+
+    .switch {
+      align-self: center;
+    }
+  }
+}
+
+.modules-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  .module{
+    height: 100px;
+    width: 100px;
+    border-radius: 20px;
+    background: map-get($custom-colors, "container-light");
+  }
+}

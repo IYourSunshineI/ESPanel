@@ -22,7 +22,19 @@
   background: map-get($custom-colors, "container-light");
 }
 
-.content-container {
+.groups-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+  overflow-y: scroll;
+
+  //hide scrollbar
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+
   border-radius: 20px;
   background: map-get($custom-colors, "container-light");
 }
