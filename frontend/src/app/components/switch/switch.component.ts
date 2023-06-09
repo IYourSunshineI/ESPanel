@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-switch',
@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./switch.component.scss']
 })
 export class SwitchComponent {
-
+  @Input() title: string;
 
   valueChanged(event: any): void{
-    console.log(event.target.checked);
+
   }
 }

@@ -9,11 +9,20 @@
       </button>
     </div>
   </div>
-  <div class="content-container">
+  <div *ngIf="type === ModuleType.rgb" class="container">
     <app-radial-slider [minValue]="0"
                        [maxValue]="255"
                        *ngFor="let i of ['R', 'G', 'B']"
                        [knobTitle]="i"
     ></app-radial-slider>
+  </div>
+  <div *ngIf="type === ModuleType.dimmer" class="container switch-container">
+    <app-radial-slider [minValue]="0"
+                       [maxValue]="255"
+                       [knobTitle]="'Dimmer'"
+    ></app-radial-slider>
+  </div>
+  <div *ngIf="type === ModuleType.switch" class="container switch-container">
+    <app-switch *ngFor="let i of ['', '', '']" [title]="i"></app-switch>
   </div>
 </div>
