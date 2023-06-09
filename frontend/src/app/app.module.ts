@@ -6,6 +6,7 @@ import { GroupComponent } from './components/group/group.component';
 import { SwitchComponent } from './components/switch/switch.component';
 import { RadialSliderComponent } from './components/radial-slider/radial-slider.component';
 import { ModuleComponent } from './components/module/module.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ModuleComponent } from './components/module/module.component';
     SwitchComponent,
     RadialSliderComponent,
     ModuleComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule
