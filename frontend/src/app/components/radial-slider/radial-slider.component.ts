@@ -40,8 +40,8 @@ export class RadialSliderComponent implements AfterViewInit{
       if(e.cancelable) e.preventDefault();
       self.windowRef.removeEventListener('touchmove', funcMove);
       self.windowRef.removeEventListener('mousemove', funcMove);
-      self.windowRef.removeEventListener('touchend', funcMove);
-      self.windowRef.removeEventListener('mouseup', funcMove);
+      self.windowRef.removeEventListener('touchend', removeListener);
+      self.windowRef.removeEventListener('mouseup', removeListener);
     }
 
     this.windowRef.addEventListener('touchmove', funcMove, {passive: false});
