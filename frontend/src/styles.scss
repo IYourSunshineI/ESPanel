@@ -1,1 +1,123 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/scss/functions.scss";
+@import "../node_modules/bootstrap/scss/variables.scss";
+@import "../node_modules/bootstrap/scss/mixins.scss";
+
+$custom-colors: (
+  "background": #FFF9EF,
+  "container-light": #EEE6D8,
+  "container-dark": #D3CCC0,
+  "dark-default": #56534E,
+  "switch-active": #b9ffb1,
+  "switch-inactive": #ff9a9a,
+);
+
+$body-color: map-get($custom-colors, "dark-default");
+$headings-color: map-get($custom-colors, "dark-default");
+$form-text-color: map-get($custom-colors, "dark-default");
+$input-plaintext-color: map-get($custom-colors, "dark-inactive");
+
+$headings-font-family: 'Inter';
+$font-family-base: 'Inter';
+$font-family-sans-serif: 'Inter';
+$font-family-monospace: 'Inter';
+$btn-font-family: 'Inter';
+$form-select-font-family: 'Inter';
+$form-control-font-family: 'Inter';
+$display-font-family: 'Inter';
+$input-btn-font-family: 'Inter';
+$input-font-family: 'Inter';
+$form-label-font-style: 'Inter';
+$form-check-label-color: map-get($custom-colors, "dark-default");
+$form-check-input-checked-color: map-get($custom-colors, "dark-default");
+$form-check-input-checked-bg-color: map-get($custom-colors, "dark-default");
+$form-check-input-bg: map-get($custom-colors, "foreground");
+$form-check-input-checked-border-color: map-get($custom-colors, "dark-default");
+$form-check-input-focus-border: none;
+$form-check-input-border-radius: 0.125rem;
+
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: map-get($custom-colors, "background") !important;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.icon-button {
+  width: 3rem;
+  height: 3rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  color: map-get($custom-colors, "dark-default");
+  align-items: center;
+  justify-content: center;
+  // remove default button styles
+  border: none;
+  outline: none;
+  background: none;
+
+  &:hover {
+    background: map-get($custom-colors, "container-light");
+  }
+
+  &:focus {
+    background: map-get($custom-colors, "container-light");
+  }
+
+  &:active {
+    background: map-get($custom-colors, "container-light");
+  }
+
+  .material-symbols-sharp {
+    font-variation-settings:
+      'FILL' 1,
+      'wght' 700,
+      'GRAD' 0,
+      'opsz' 48
+  }
+}
+
+.icon-button-module {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border-radius: 0.5rem;
+  color: map-get($custom-colors, "dark-default");
+  align-items: center;
+  justify-content: center;
+  // remove default button styles
+  border: none;
+  outline: none;
+  background: none;
+
+  &:hover {
+    background: map-get($custom-colors, "container-dark");
+  }
+
+  &:focus {
+    background: map-get($custom-colors, "container-dark");
+  }
+
+  &:active {
+    background: map-get($custom-colors, "container-dark");
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 20
+  }
+}
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";

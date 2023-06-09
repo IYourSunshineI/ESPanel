@@ -1,0 +1,40 @@
+@import "src/styles.scss";
+
+.main-container {
+  display: grid;
+  grid-template-columns: 250px auto;
+  grid-template-rows: max-content auto;
+  gap: 20px;
+  padding: 20px;
+  height: 100%;
+}
+
+.logo-container {
+  width: 250px;
+
+  .logo {
+    width: 100%;
+  }
+}
+
+.sidebar-container {
+  border-radius: 20px;
+  background: map-get($custom-colors, "container-light");
+}
+
+.groups-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+  overflow-y: scroll;
+
+  //hide scrollbar
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+
+  border-radius: 20px;
+  background: map-get($custom-colors, "container-light");
+}

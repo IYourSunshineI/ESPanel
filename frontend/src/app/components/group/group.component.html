@@ -1,0 +1,21 @@
+<div class="main-container">
+  <div class="header">
+    <div class="right">
+      <div class="title">
+        Title
+      </div>
+      <div class="switch">
+        <app-switch></app-switch>
+      </div>
+    </div>
+    <div>
+      <button class="icon-button">
+        <div class="material-symbols-sharp">settings</div>
+      </button>
+    </div>
+  </div>
+  <div class="modules-container">
+    <!-- make a component -->
+    <app-module *ngFor="let i of [1, 2, 3, 4, 5, 6]"></app-module>
+  </div>
+</div>
