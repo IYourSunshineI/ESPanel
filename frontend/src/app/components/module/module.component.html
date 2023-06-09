@@ -1,0 +1,18 @@
+<div class="main-container">
+  <div class="header-container">
+    <div class="name">
+      Name
+    </div>
+    <div class="button-group">
+      <button class="icon-button-module">
+        <div class="material-symbols-outlined">settings</div>
+      </button>
+    </div>
+  </div>
+  <div class="content-container">
+    <app-radial-slider [minValue]="0"
+                       [maxValue]="255"
+                       *ngFor="let i of [1, 2, 3]"
+    ></app-radial-slider>
+  </div>
+</div>

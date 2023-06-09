@@ -76,6 +76,48 @@ html, body {
   &:active {
     background: map-get($custom-colors, "container-light");
   }
+
+  .material-symbols-sharp {
+    font-variation-settings:
+      'FILL' 1,
+      'wght' 700,
+      'GRAD' 0,
+      'opsz' 48
+  }
+}
+
+.icon-button-module {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border-radius: 0.5rem;
+  color: map-get($custom-colors, "dark-default");
+  align-items: center;
+  justify-content: center;
+  // remove default button styles
+  border: none;
+  outline: none;
+  background: none;
+
+  &:hover {
+    background: map-get($custom-colors, "container-dark");
+  }
+
+  &:focus {
+    background: map-get($custom-colors, "container-dark");
+  }
+
+  &:active {
+    background: map-get($custom-colors, "container-dark");
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 20
+  }
 }
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";

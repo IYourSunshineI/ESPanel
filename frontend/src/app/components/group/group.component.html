@@ -16,13 +16,6 @@
   </div>
   <div class="modules-container">
     <!-- make a component -->
-    <div *ngFor="let i of [1, 2, 3, 4, 5, 6, 7]"  class="module">
-      <app-radial-slider [minValue]="0"
-                         [maxValue]="255"
-                         (value)="temp($event)"
-      >
-
-      </app-radial-slider>
-    </div>
+    <app-module *ngFor="let i of [1, 2, 3, 4, 5, 6]"></app-module>
   </div>
 </div>

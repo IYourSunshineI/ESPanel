@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
 export class GroupComponent {
 
   temp(e: number){
-    console.log(e);
+
   }
 }
