@@ -1,4 +1,7 @@
 <div class="main-container">
+  <div class="knob-title">
+    {{ this.knobTitle }}
+  </div>
   <div #knob class="knob"
        [ngStyle]="{'transform':'rotate(' + rotationValue + 'deg)'}">
     <label class="lighter-circle">
@@ -6,6 +9,6 @@
     </label>
   </div>
   <div class="value">
-    200
+    {{ this.currentValue }}
   </div>
 </div>

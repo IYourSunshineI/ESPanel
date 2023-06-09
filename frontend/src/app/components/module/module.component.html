@@ -12,7 +12,8 @@
   <div class="content-container">
     <app-radial-slider [minValue]="0"
                        [maxValue]="255"
-                       *ngFor="let i of [1, 2, 3]"
+                       *ngFor="let i of ['R', 'G', 'B']"
+                       [knobTitle]="i"
     ></app-radial-slider>
   </div>
 </div>

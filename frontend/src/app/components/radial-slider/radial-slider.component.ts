@@ -9,8 +9,10 @@ export class RadialSliderComponent implements AfterViewInit{
   @ViewChild('knob') knobDiv: ElementRef;
   @Input() minValue: number;
   @Input() maxValue: number;
+  @Input() knobTitle: string;
   @Output() value: EventEmitter<number> = new EventEmitter<number>();
 
+  currentValue: number = 0;
   minRotation = 0;
   maxRotation = 360;
   rotationValue = 0;
@@ -88,6 +90,7 @@ export class RadialSliderComponent implements AfterViewInit{
       this.minValue,
       this.maxValue);
 
+    this.currentValue = Math.trunc(value);
     this.value.emit(value);
   }
 
