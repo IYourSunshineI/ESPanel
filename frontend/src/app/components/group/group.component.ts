@@ -8,8 +8,8 @@ import {ModuleType} from "../../types/module-type";
 })
 export class GroupComponent {
 
-  temp(e: number){
-
+  temp(e: any){
+    console.log('click');
   }
 
   protected readonly ModuleType = ModuleType;

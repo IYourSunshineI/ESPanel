@@ -38,5 +38,36 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
+
+  .add-container {
+    height: 50px;
+    width: 50px;
+    border-radius: 20px;
+    background: map-get($custom-colors, "dark-default");
+    align-self: center;
+
+    color: map-get($custom-colors, "container-light");
+    display: inline-grid;
+    align-items: center;
+    justify-items: center;
+
+    cursor: pointer;
+
+    &:hover {
+      background: map-get($custom-colors, "container-light");
+      color: map-get($custom-colors, "dark-default");
+      border: 3px solid map-get($custom-colors, "dark-default");
+    }
+    &:focus {
+      background: map-get($custom-colors, "container-light");
+      color: map-get($custom-colors, "dark-default");
+      border: 3px solid map-get($custom-colors, "dark-default");
+    }
+    &:active {
+      background: map-get($custom-colors, "container-light");
+      color: map-get($custom-colors, "dark-default");
+      border: 3px solid map-get($custom-colors, "dark-default");
+    }
+  }
 }
 
