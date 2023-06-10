@@ -1,15 +1,23 @@
 <div class="main-container">
   <div class="header-container">
     <div class="title">
-      Rooms
+      <div>
+        Rooms
+      </div>
+      <button class="add-button">
+        <div class="material-symbols-outlined">add</div>
+      </button>
     </div>
     <div class="line"></div>
   </div>
 
   <div class="rooms-container">
-    <div *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]">
-      {{i}}
-    </div>
+    <button *ngFor="let i of ['Living Room', 'Office', 'Kitchen',
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]" class="room-button">
+      <div class="room-name">
+        {{ i }}
+      </div>
+    </button>
   </div>
 
 </div>
