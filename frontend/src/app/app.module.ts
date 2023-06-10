@@ -7,6 +7,8 @@ import { SwitchComponent } from './components/switch/switch.component';
 import { RadialSliderComponent } from './components/radial-slider/radial-slider.component';
 import { ModuleComponent } from './components/module/module.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     SidebarComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [
     { provide: Window, useValue: window }
