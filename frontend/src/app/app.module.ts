@@ -8,6 +8,7 @@ import { RadialSliderComponent } from './components/radial-slider/radial-slider.
 import { ModuleComponent } from './components/module/module.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RoomCreateModalComponent } from './components/room/room-create-modal/room-create-modal.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     RadialSliderComponent,
     ModuleComponent,
     SidebarComponent,
+    RoomCreateModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,15 @@
+@import "src/styles.scss";
+
+.modal-body {
+  padding: 1.5rem;
+  margin: 0;
+  border-radius: 20px;
+  color: map-get($custom-colors, "dark-default");
+  background: map-get($custom-colors, "background");
+
+  .title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    align-self: center;
+  }
+}
