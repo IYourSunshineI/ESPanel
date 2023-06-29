@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.invoke.MethodHandles;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = RoomEndpoint.BASE_PATH)
@@ -31,5 +32,16 @@ public class RoomEndpoint {
     public RoomDetailDto create(@Valid @RequestBody RoomCreateDto room){
         LOGGER.info("POST " + BASE_PATH + "\nBody: {}", room);
         return service.create(room);
+    }
+
+    /**
+     * Get all rooms
+     * @return all rooms
+     */
+    @GetMapping()
+    @ResponseStatus(HttpStatus.OK)
+    public List<RoomDetailDto> getAll(){
+        LOGGER.info("GET " + BASE_PATH);
+        return service.getAll();
     }
 }

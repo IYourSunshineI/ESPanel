@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -43,5 +44,12 @@ public class RoomServiceTest {
                 () -> assertNotNull(room.title()),
                 () -> assertEquals("TestRoom", room.title())
         );
+    }
+
+    @Test
+    public void givenExistingRooms_whenGetAll_thenReturnAllRooms() {
+        List<RoomDetailDto> rooms = roomService.getAll();
+        assertNotNull(rooms);
+        assertEquals(2, rooms.size());
     }
 }

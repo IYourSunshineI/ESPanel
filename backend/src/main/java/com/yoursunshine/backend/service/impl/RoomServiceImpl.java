@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.lang.invoke.MethodHandles;
+import java.util.List;
 
 @Service
 public class RoomServiceImpl implements RoomService {
@@ -29,5 +30,11 @@ public class RoomServiceImpl implements RoomService {
         Room toCreate = mapper.createDtoToEntity(room);
 
         return mapper.entityToDetailDto(repository.save(toCreate));
+    }
+
+    @Override
+    public List<RoomDetailDto> getAll() {
+        LOGGER.info("getAll");
+        return mapper.entityListToDetailDtoList(repository.findAll());
     }
 }

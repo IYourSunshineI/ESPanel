@@ -83,4 +83,19 @@ public class RoomEndpointTest {
                 .andExpect(status().isUnprocessableEntity());
     }
 
+    @Test
+    public void givenExistingRooms_whenGetAll_thenReturnAll() throws Exception {
+        byte[] body = mockMvc.perform(MockMvcRequestBuilders
+                .get("/rooms"))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse()
+                .getContentAsByteArray();
+
+        RoomDetailDto[] rooms = objectMapper.readValue(body, RoomDetailDto[].class);
+
+        assertNotNull(rooms);
+        assertEquals(2, rooms.length);
+    }
+
 }
