@@ -123,4 +123,46 @@ html, body {
   }
 }
 
+.button-save {
+  border-radius: 10px;
+  border: 2px solid map-get($custom-colors, "dark-default");
+  padding: 0.5rem;
+  background: map-get($custom-colors, "dark-default");
+  color: map-get($custom-colors, "background");
+
+  &:hover {
+    background: map-get($custom-colors, "background");
+    color: map-get($custom-colors, "dark-default");
+  }
+  &:focus {
+    background: map-get($custom-colors, "background");
+    color: map-get($custom-colors, "dark-default");
+  }
+  &:active {
+    background: map-get($custom-colors, "background");
+    color: map-get($custom-colors, "dark-default");
+  }
+}
+
+.button-cancel {
+  border-radius: 10px;
+  border: 2px solid map-get($custom-colors, "dark-default");
+  padding: 0.5rem;
+  background: map-get($custom-colors, "background");
+  color: map-get($custom-colors, "dark-default");
+
+  &:hover {
+    background: map-get($custom-colors, "dark-default");
+    color: map-get($custom-colors, "background");
+  }
+  &:focus {
+    background: map-get($custom-colors, "dark-default");
+    color: map-get($custom-colors, "background");
+  }
+  &:active {
+    background: map-get($custom-colors, "dark-default");
+    color: map-get($custom-colors, "background");
+  }
+}
+
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
