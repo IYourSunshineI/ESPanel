@@ -9,6 +9,7 @@ import { ModuleComponent } from './components/module/module.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoomCreateModalComponent } from './components/room/room-create-modal/room-create-modal.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { RoomCreateModalComponent } from './components/room/room-create-modal/ro
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     { provide: Window, useValue: window }

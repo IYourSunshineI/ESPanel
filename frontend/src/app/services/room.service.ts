@@ -9,7 +9,7 @@ import {Globals} from "../global/globals";
 })
 export class RoomService {
 
-  private roomBaseUri: string = this.globals.backendUri + '/room';
+  private roomBaseUri: string = this.globals.backendUri + '/rooms';
 
   constructor(
     private http: HttpClient,

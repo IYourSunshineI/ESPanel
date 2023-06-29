@@ -9,7 +9,7 @@ $custom-colors: (
   "container-dark": #D3CCC0,
   "dark-default": #56534E,
   "switch-active": #b9ffb1,
-  "switch-inactive": #ff9a9a,
+  "error": #ff9a9a,
 );
 
 $body-color: map-get($custom-colors, "dark-default");
