@@ -123,6 +123,30 @@ html, body {
   }
 }
 
+.modal-body {
+  padding: 1.5rem;
+  margin: 0;
+  border-radius: 20px;
+  color: map-get($custom-colors, "dark-default");
+  background: map-get($custom-colors, "background");
+
+  .title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    align-self: center;
+  }
+}
+
+.warn {
+  border-color: map-get($custom-colors, "error");
+}
+
+.err-msg {
+  color: map-get($custom-colors, "error");
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
 .input-text {
   padding: 0 0.25rem;
   margin-top: 20px;
@@ -172,6 +196,27 @@ html, body {
   }
   &:active {
     background: map-get($custom-colors, "dark-default");
+    color: map-get($custom-colors, "background");
+  }
+}
+
+.button-delete {
+  border-radius: 10px;
+  border: 2px solid map-get($custom-colors, "error");
+  padding: 0.5rem;
+  background: map-get($custom-colors, "background");
+  color: map-get($custom-colors, "error");
+
+  &:hover {
+    background: map-get($custom-colors, "error");
+    color: map-get($custom-colors, "background");
+  }
+  &:focus {
+    background: map-get($custom-colors, "error");
+    color: map-get($custom-colors, "background");
+  }
+  &:active {
+    background: map-get($custom-colors, "error");
     color: map-get($custom-colors, "background");
   }
 }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {Room} from "./dtos/room";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {RoomSettingsModalComponent} from "./components/room/room-settings-modal/room-settings-modal.component";
 
 @Component({
   selector: 'app-root',
@@ -9,11 +11,26 @@ import {Room} from "./dtos/room";
 export class AppComponent {
   title = 'frontend';
 
+  defaultRoomName = 'select a room';
   room: Room = {
-    title: 'select a room',
+    title: this.defaultRoomName,
   };
+
+  constructor(
+    private modalService: NgbModal,
+  ) {
+  }
 
   roomChanged(room: Room) {
     this.room = room;
+  }
+
+  async openRoomSettings() {
+    if(this.room.title === this.defaultRoomName) {
+      return;
+    }
+    const modalRef = this.modalService.open(RoomSettingsModalComponent,
+      {centered: true});
+    modalRef.componentInstance.room = this.room;
   }
 }
