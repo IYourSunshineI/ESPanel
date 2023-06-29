@@ -5,7 +5,7 @@
 
   <div class="header-container">
     <div class="room-title">
-      Current Room
+      {{ this.room.title }}
     </div>
     <div class="button-container">
       <button class="icon-button">
@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <app-sidebar></app-sidebar>
+  <app-sidebar (roomChanged)="roomChanged($event)"/>
 
   <div class="groups-container">
     <app-group *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9]"></app-group>

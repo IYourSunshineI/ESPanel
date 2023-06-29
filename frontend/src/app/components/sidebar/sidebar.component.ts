@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {RoomCreateModalComponent} from "../room/room-create-modal/room-create-modal.component";
 import {Room} from "../../dtos/room";
@@ -11,6 +11,9 @@ import {RoomService} from "../../services/room.service";
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit{
+
+  @Output()
+  roomChanged: EventEmitter<Room> = new EventEmitter<Room>();
 
   rooms: Room[];
   constructor(
@@ -31,6 +34,10 @@ export class SidebarComponent implements OnInit{
       console.log('dismissed reason: ', dismissReason);
       this.loadRooms();
     }
+  }
+
+  changeRoom(room: Room) {
+    this.roomChanged.emit(room);
   }
 
   private loadRooms() {

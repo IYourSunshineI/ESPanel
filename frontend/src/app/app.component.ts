@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Room} from "./dtos/room";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+
+  room: Room = {
+    title: 'select a room',
+  };
+
+  roomChanged(room: Room) {
+    this.room = room;
+  }
 }

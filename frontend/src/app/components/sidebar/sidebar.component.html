@@ -12,7 +12,8 @@
   </div>
 
   <div class="rooms-container">
-    <button *ngFor="let i of this.rooms" class="room-button">
+    <button *ngFor="let i of this.rooms" class="room-button"
+            (click)="changeRoom(i)">
       <div class="room-name">
         {{ i.title }}
       </div>
