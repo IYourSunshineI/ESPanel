@@ -92,4 +92,9 @@
   &:active {
     background: map-get($custom-colors, "container-dark");
   }
+
+  .room-name{
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 }

@@ -12,10 +12,9 @@
   </div>
 
   <div class="rooms-container">
-    <button *ngFor="let i of ['Living Room', 'Office', 'Kitchen',
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]" class="room-button">
+    <button *ngFor="let i of this.rooms" class="room-button">
       <div class="room-name">
-        {{ i }}
+        {{ i.title }}
       </div>
     </button>
   </div>

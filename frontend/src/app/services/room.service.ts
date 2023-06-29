@@ -25,4 +25,13 @@ export class RoomService {
     console.log('create room: ', room);
     return this.http.post<Room>(this.roomBaseUri, room);
   }
+
+  /**
+   * Returns all rooms
+   * @return all rooms
+   */
+  getAll(): Observable<Room[]> {
+    console.log('get all rooms');
+    return this.http.get<Room[]>(this.roomBaseUri);
+  }
 }
