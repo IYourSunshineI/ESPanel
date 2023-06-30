@@ -8,7 +8,9 @@ import { RadialSliderComponent } from './components/radial-slider/radial-slider.
 import { ModuleComponent } from './components/module/module.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { RoomCreateModalComponent } from './components/room/room-create-modal/room-create-modal.component';
+import {FormsModule} from "@angular/forms";
+import { RoomSettingsModalComponent } from './components/room/room-settings-modal/room-settings-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,10 +20,13 @@ import { HttpClientModule } from '@angular/common/http';
     RadialSliderComponent,
     ModuleComponent,
     SidebarComponent,
+    RoomCreateModalComponent,
+    RoomSettingsModalComponent,
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     { provide: Window, useValue: window }

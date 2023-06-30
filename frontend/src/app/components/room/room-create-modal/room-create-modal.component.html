@@ -1,0 +1,19 @@
+<div class="modal-body">
+  <div class="title">New Room</div>
+  <input type="text" placeholder="Title"
+         [(ngModel)]="this.room.title"
+         [ngClass]="{'input-text': true,
+                     'warn': this.error}"
+        (input)="this.error = false">
+  <div class="err-msg" *ngIf="this.error">
+    {{this.errorMessage}}
+  </div>
+  <div class="button-group">
+    <button class="button-cancel" (click)="this.activeModal.dismiss('cancel')">
+      Cancel
+    </button>
+    <button class="button-save" (click)="this.createRoom()">
+      Save
+    </button>
+  </div>
+</div>

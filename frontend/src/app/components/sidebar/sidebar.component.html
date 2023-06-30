@@ -4,7 +4,7 @@
       <div>
         Rooms
       </div>
-      <button class="add-button">
+      <button class="add-button" (click)="openCreateRoomModal()">
         <div class="material-symbols-outlined">add</div>
       </button>
     </div>
@@ -12,10 +12,11 @@
   </div>
 
   <div class="rooms-container">
-    <button *ngFor="let i of ['Living Room', 'Office', 'Kitchen',
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]" class="room-button">
+    <button *ngFor="let i of this.rooms" class="room-button"
+            (click)="changeRoom(i)"
+            [ngClass]="{'selected': isSelected(i.id)}">
       <div class="room-name">
-        {{ i }}
+        {{ i.title }}
       </div>
     </button>
   </div>

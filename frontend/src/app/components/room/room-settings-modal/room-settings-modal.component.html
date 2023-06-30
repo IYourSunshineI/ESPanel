@@ -1,0 +1,25 @@
+<div class="modal-body">
+  <div class="title">Settings</div>
+  <div class="fields">
+    <input type="text" class="input-text" placeholder="Title"
+           [(ngModel)]="this.updatedRoom.title"
+          (input)="this.error = false">
+    <div *ngIf="!this.error" class="desc">Title</div>
+    <div *ngIf="this.error" class="err-msg"> {{ this.errorMessage }}</div>
+  </div>
+  <div class="button-group">
+    <div class="left">
+      <button class="button-cancel" (click)="this.activeModal.dismiss('cancel')">
+        Cancel
+      </button>
+      <button class="button-delete" (click)="this.delete()">
+        Delete
+      </button>
+    </div>
+    <div class="right">
+      <button class="button-save" (click)="this.save()">
+        Save
+      </button>
+    </div>
+  </div>
+</div>
