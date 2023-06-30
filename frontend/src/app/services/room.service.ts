@@ -44,4 +44,13 @@ export class RoomService {
     console.log('update room: ', room);
     return this.http.put<Room>(this.roomBaseUri + '/' + room.id, room);
   }
+
+  /**
+   * Deletes the room
+   * @param id of the room to delete
+   */
+  delete(id: number): Observable<any> {
+    console.log('delete room: ', id);
+    return this.http.delete<any>(this.roomBaseUri + '/' + id);
+  }
 }

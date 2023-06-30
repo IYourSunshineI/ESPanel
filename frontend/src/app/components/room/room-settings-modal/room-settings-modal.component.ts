@@ -39,7 +39,17 @@ export class RoomSettingsModalComponent implements AfterContentInit{
   }
 
   delete() {
-    //TODO
-    console.log('delete', this.room);
+    if(!this.room.id){
+      return;
+    }
+    this.service.delete(this.room.id).subscribe({
+      next: data => {
+        console.log('deleted room: ', data);
+        this.activeModal.dismiss('deleted');
+      },
+      error: e => {
+        console.error('error deleting room: ', e);
+      }
+    });
   }
 }
