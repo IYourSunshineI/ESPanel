@@ -21,4 +21,12 @@ public interface RoomService {
      * @return all rooms
      */
     List<RoomDetailDto> getAll();
+
+    /**
+     * Update a room
+     * @param id the id of the room to update
+     * @param room the room to update
+     * @return the updated room
+     */
+    RoomDetailDto update(Long id, RoomDetailDto room);
 }

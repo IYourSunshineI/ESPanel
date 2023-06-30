@@ -98,4 +98,38 @@ public class RoomEndpointTest {
         assertEquals(2, rooms.length);
     }
 
+    @Test
+    public void givenExistingRoom_whenUpdateWithValidData_thenReturnUpdatedRoom() throws Exception {
+        String json = objectMapper.writeValueAsString(new RoomDetailDto(-1L, "UpdatedRoom"));
+
+        byte[] body = mockMvc.perform(MockMvcRequestBuilders
+                .put("/rooms/-1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse()
+                .getContentAsByteArray();
+
+        RoomDetailDto room = objectMapper.readValue(body, RoomDetailDto.class);
+
+        assertNotNull(room);
+        assertAll(
+                () -> assertNotNull(room.id()),
+                () -> assertNotNull(room.title()),
+                () -> assertEquals("UpdatedRoom", room.title())
+        );
+    }
+
+    @Test
+    public void givenNonExistingRoom_whenUpdateWithValidData_thenReturn404() throws Exception {
+        String json = objectMapper.writeValueAsString(new RoomDetailDto(-99L, "UpdatedRoom"));
+
+        mockMvc.perform(MockMvcRequestBuilders
+                .put("/rooms/-99")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
+                .andExpect(status().isNotFound());
+    }
+
 }

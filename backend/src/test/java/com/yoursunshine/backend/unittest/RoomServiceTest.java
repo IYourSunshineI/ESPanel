@@ -3,6 +3,7 @@ package com.yoursunshine.backend.unittest;
 import com.yoursunshine.backend.datagenerator.DataGeneratorBean;
 import com.yoursunshine.backend.endpoint.dto.RoomCreateDto;
 import com.yoursunshine.backend.endpoint.dto.RoomDetailDto;
+import com.yoursunshine.backend.exception.NotFoundException;
 import com.yoursunshine.backend.service.RoomService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -51,5 +52,21 @@ public class RoomServiceTest {
         List<RoomDetailDto> rooms = roomService.getAll();
         assertNotNull(rooms);
         assertEquals(2, rooms.size());
+    }
+
+    @Test
+    public void givenExistingRoom_whenUpdateWithValidData_thenUpdateAndReturnEntry() {
+        RoomDetailDto room = roomService.update(-1L, new RoomDetailDto(-1L, "TestRoom"));
+        assertNotNull(room);
+        assertAll(
+                () -> assertNotNull(room.id()),
+                () -> assertNotNull(room.title()),
+                () -> assertEquals("TestRoom", room.title())
+        );
+    }
+
+    @Test
+    public void givenNonExistingRoom_whenUpdateWithValidData_thenThrowException() {
+        assertThrows(NotFoundException.class, () -> roomService.update(-99L, new RoomDetailDto(-99L, "TestRoom")));
     }
 }

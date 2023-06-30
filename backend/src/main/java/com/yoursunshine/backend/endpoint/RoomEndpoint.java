@@ -44,4 +44,17 @@ public class RoomEndpoint {
         LOGGER.info("GET " + BASE_PATH);
         return service.getAll();
     }
+
+    /**
+     * Update a room
+     * @param id the id of the room to update
+     * @param room the room to update
+     * @return the updated room
+     */
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public RoomDetailDto update(@PathVariable("id") Long id, @Valid @RequestBody RoomDetailDto room){
+        LOGGER.info("PUT " + BASE_PATH + "/{}", id);
+        return service.update(id, room);
+    }
 }

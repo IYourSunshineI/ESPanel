@@ -3,6 +3,7 @@ package com.yoursunshine.backend.service.impl;
 import com.yoursunshine.backend.endpoint.dto.RoomCreateDto;
 import com.yoursunshine.backend.endpoint.dto.RoomDetailDto;
 import com.yoursunshine.backend.entity.Room;
+import com.yoursunshine.backend.exception.NotFoundException;
 import com.yoursunshine.backend.mapper.RoomMapper;
 import com.yoursunshine.backend.repository.RoomRepository;
 import com.yoursunshine.backend.service.RoomService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.invoke.MethodHandles;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RoomServiceImpl implements RoomService {
@@ -36,5 +38,20 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomDetailDto> getAll() {
         LOGGER.info("getAll");
         return mapper.entityListToDetailDtoList(repository.findAll());
+    }
+
+    @Override
+    public RoomDetailDto update(Long id, RoomDetailDto room) {
+        LOGGER.info("update: {}", room);
+
+        Optional<Room> toUpdate = repository.findById(id);
+        if(toUpdate.isPresent()){
+            Room existingRoom = toUpdate.get();
+            existingRoom.setTitle(room.title());
+
+            return mapper.entityToDetailDto(repository.save(existingRoom));
+        } else {
+            throw new NotFoundException("Room with id " + id + " does not exist");
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.yoursunshine.backend.endpoint;
 
+import com.yoursunshine.backend.exception.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -23,5 +24,17 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleValidationException(MethodArgumentNotValidException ex) {
         LOGGER.warn("handleConflictExceptions: {}", ex.getMessage());
         return ResponseEntity.unprocessableEntity().body(ex.getBindingResult().getFieldErrors());
+    }
+
+    /**
+     * Handle not found exceptions.
+     *
+     * @param ex the exception
+     * @return the response entity
+     */
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<Object> handleNotFoundException(NotFoundException ex) {
+        LOGGER.warn("handleNotFoundException: {}", ex.getMessage());
+        return ResponseEntity.notFound().build();
     }
 }
