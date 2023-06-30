@@ -49,7 +49,7 @@ public class GroupEndpointTest {
 
     @Test
     public void givenNothing_whenCreateWithValidData_thenCreateAndReturnEntryAnd201() throws Exception{
-        String json = objectMapper.writeValueAsString(new GroupCreateDto("TestGroup", "111.111.111.111"));
+        String json = objectMapper.writeValueAsString(new GroupCreateDto("TestGroup", "111.111.111.111", -1L));
 
         byte[] body = mockMvc.perform(MockMvcRequestBuilders
                 .post("/groups")
@@ -68,13 +68,15 @@ public class GroupEndpointTest {
                 () -> assertEquals("TestGroup", group.title()),
                 () -> assertNotNull(group.ip_address()),
                 () -> assertEquals("111.111.111.111", group.ip_address()),
-                () -> assertFalse(group.state())
+                () -> assertFalse(group.state()),
+                () -> assertNotNull(group.room_id()),
+                () -> assertEquals(-1L, group.room_id())
         );
     }
 
     @Test
     public void givenNothing_whenCreateWithInvalidData_thenReturn422() throws Exception {
-        String json = objectMapper.writeValueAsString(new GroupCreateDto("title", "abcs"));
+        String json = objectMapper.writeValueAsString(new GroupCreateDto("title", "abcs", -1L));
 
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/groups")
@@ -100,7 +102,7 @@ public class GroupEndpointTest {
 
     @Test
     public void givenExistingGroup_whenUpdateWithValidData_thenReturnUpdatedGroupAnd200() throws Exception {
-        String json = objectMapper.writeValueAsString(new GroupDetailDto(-1L, "TestGroup", "2.2.2.2", true));
+        String json = objectMapper.writeValueAsString(new GroupDetailDto(-1L, "TestGroup", "2.2.2.2", true, -1L));
 
         byte[] body = mockMvc.perform(MockMvcRequestBuilders
                         .put("/groups/-1")
@@ -118,13 +120,15 @@ public class GroupEndpointTest {
                 () -> assertEquals(-1L, group.id()),
                 () -> assertEquals("TestGroup", group.title()),
                 () -> assertEquals("2.2.2.2", group.ip_address()),
-                () -> assertTrue(group.state())
+                () -> assertTrue(group.state()),
+                () -> assertNotNull(group.room_id()),
+                () -> assertEquals(-1L, group.room_id())
         );
     }
 
     @Test
     public void givenNonExistingGroup_whenUpdateWithValidData_thenReturn404() throws Exception {
-        String json = objectMapper.writeValueAsString(new GroupDetailDto(-99L, "TestGroup", "1.1.1.1", true));
+        String json = objectMapper.writeValueAsString(new GroupDetailDto(-99L, "TestGroup", "1.1.1.1", true, -1L));
 
         mockMvc.perform(MockMvcRequestBuilders
                         .put("/groups/-99")

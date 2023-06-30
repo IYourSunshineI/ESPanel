@@ -11,6 +11,9 @@ public record GroupDetailDto(
         String title,
         @Pattern(regexp = "^([0-9]{1,3}\\.){3}[0-9]{1,3}$", message = "Invalid IP address")
         String ip_address,
-        boolean state
+        boolean state,
+
+        @NotNull(message = "No room given")
+        Long room_id
 ) {
 }

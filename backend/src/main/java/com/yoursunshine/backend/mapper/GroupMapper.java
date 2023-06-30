@@ -4,6 +4,7 @@ import com.yoursunshine.backend.endpoint.dto.GroupCreateDto;
 import com.yoursunshine.backend.endpoint.dto.GroupDetailDto;
 import com.yoursunshine.backend.entity.EspGroup;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public interface GroupMapper {
      * @param group the group to map
      * @return the mapped group
      */
+    @Mapping(expression = "java(group.getRoom().getId())", target = "room_id")
     GroupDetailDto entityToDetailDto(EspGroup group);
 
     /**
