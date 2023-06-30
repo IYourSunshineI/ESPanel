@@ -40,10 +40,11 @@ export class SidebarComponent implements OnInit{
     this.roomChanged.emit(room);
   }
 
-  private loadRooms() {
+  loadRooms() {
     this.service.getAll().subscribe( {
       next: data => {
         this.rooms = data;
+        this.changeRoom(this.rooms[0]);
       },
       error: e => {
         console.error('error loading rooms: ', e);

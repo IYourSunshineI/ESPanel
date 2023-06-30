@@ -2,12 +2,12 @@
   <div class="title">Settings</div>
   <div class="fields">
     <input type="text" class="input-text" placeholder="Title"
-           [(ngModel)]="this.room.title">
+           [(ngModel)]="this.updatedRoom.title">
     <div class="desc">Title</div>
   </div>
   <div class="button-group">
     <div class="left">
-      <button class="button-cancel" (click)="this.activeModal.dismiss()">
+      <button class="button-cancel" (click)="this.activeModal.dismiss('cancel')">
         Cancel
       </button>
       <button class="button-delete" (click)="this.delete()">

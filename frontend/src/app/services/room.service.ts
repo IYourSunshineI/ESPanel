@@ -34,4 +34,14 @@ export class RoomService {
     console.log('get all rooms');
     return this.http.get<Room[]>(this.roomBaseUri);
   }
+
+  /**
+   * Updates the room
+   * @param room the room to update
+   * @return the updated room
+   */
+  update(room: Room): Observable<Room> {
+    console.log('update room: ', room);
+    return this.http.put<Room>(this.roomBaseUri + '/' + room.id, room);
+  }
 }
