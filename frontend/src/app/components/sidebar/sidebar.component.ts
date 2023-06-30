@@ -15,6 +15,7 @@ export class SidebarComponent implements OnInit{
   @Output()
   roomChanged: EventEmitter<Room> = new EventEmitter<Room>();
 
+  lastRoom: Room;
   rooms: Room[];
   constructor(
     private modalService: NgbModal,
@@ -37,6 +38,7 @@ export class SidebarComponent implements OnInit{
   }
 
   changeRoom(room: Room) {
+    this.lastRoom = room;
     this.roomChanged.emit(room);
   }
 
@@ -44,7 +46,8 @@ export class SidebarComponent implements OnInit{
     this.service.getAll().subscribe( {
       next: data => {
         this.rooms = data;
-        this.changeRoom(this.rooms[0]);
+        const temp = this.rooms.find(r => r.id === this.lastRoom.id);
+        this.changeRoom(temp ? temp : this.rooms[0]);
       },
       error: e => {
         console.error('error loading rooms: ', e);
