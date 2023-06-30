@@ -46,12 +46,23 @@ export class SidebarComponent implements OnInit{
     this.service.getAll().subscribe( {
       next: data => {
         this.rooms = data;
-        const temp = this.rooms.find(r => r.id === this.lastRoom.id);
+
+        let temp;
+        if(this.lastRoom) {
+          temp = this.rooms.find(r => r.id === this.lastRoom.id);
+        }
         this.changeRoom(temp ? temp : this.rooms[0]);
       },
       error: e => {
         console.error('error loading rooms: ', e);
       }
     });
+  }
+
+  isSelected(id: number | undefined): boolean {
+    if(!this.lastRoom || !id) {
+      return false;
+    }
+    return this.lastRoom.id === id;
   }
 }

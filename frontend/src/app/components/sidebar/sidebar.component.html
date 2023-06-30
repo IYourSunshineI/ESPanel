@@ -13,7 +13,8 @@
 
   <div class="rooms-container">
     <button *ngFor="let i of this.rooms" class="room-button"
-            (click)="changeRoom(i)">
+            (click)="changeRoom(i)"
+            [ngClass]="{'selected': isSelected(i.id)}">
       <div class="room-name">
         {{ i.title }}
       </div>
