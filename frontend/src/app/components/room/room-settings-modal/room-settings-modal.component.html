@@ -2,8 +2,10 @@
   <div class="title">Settings</div>
   <div class="fields">
     <input type="text" class="input-text" placeholder="Title"
-           [(ngModel)]="this.updatedRoom.title">
-    <div class="desc">Title</div>
+           [(ngModel)]="this.updatedRoom.title"
+          (input)="this.error = false">
+    <div *ngIf="!this.error" class="desc">Title</div>
+    <div *ngIf="this.error" class="err-msg"> {{ this.errorMessage }}</div>
   </div>
   <div class="button-group">
     <div class="left">

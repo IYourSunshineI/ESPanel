@@ -12,6 +12,8 @@ export class RoomSettingsModalComponent implements AfterContentInit{
 
   room: Room;
   updatedRoom: Room;
+  error: boolean = false;
+  errorMessage: string = '';
 
   ngAfterContentInit(): void {
     this.updatedRoom = {...this.room};
@@ -30,6 +32,8 @@ export class RoomSettingsModalComponent implements AfterContentInit{
       },
       error: e => {
         console.error('error updating room: ', e);
+        this.error = true;
+        this.errorMessage = e.error[0].defaultMessage;
       }
     });
   }
