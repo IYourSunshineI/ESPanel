@@ -57,4 +57,11 @@ public class RoomEndpoint {
         LOGGER.info("PUT " + BASE_PATH + "/{}", id);
         return service.update(id, room);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id") Long id){
+        LOGGER.info("DELETE " + BASE_PATH + "/{}", id);
+        service.delete(id);
+    }
 }

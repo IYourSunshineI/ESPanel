@@ -69,4 +69,18 @@ public class RoomServiceTest {
     public void givenNonExistingRoom_whenUpdateWithValidData_thenThrowException() {
         assertThrows(NotFoundException.class, () -> roomService.update(-99L, new RoomDetailDto(-99L, "TestRoom")));
     }
+
+    @Test
+    public void givenExistingRoom_whenDelete_thenDelete() {
+        int sizeBefore = roomService.getAll().size();
+        roomService.delete(-1L);
+        List<RoomDetailDto> rooms = roomService.getAll();
+        assertNotNull(rooms);
+        assertEquals(sizeBefore - 1, rooms.size());
+    }
+
+    @Test
+    public void givenNonExistingRoom_whenDelete_thenThrowException() {
+        assertThrows(NotFoundException.class, () -> roomService.delete(-99L));
+    }
 }

@@ -29,4 +29,10 @@ public interface RoomService {
      * @return the updated room
      */
     RoomDetailDto update(Long id, RoomDetailDto room);
+
+    /**
+     * Delete a room
+     * @param id the id of the room to delete
+     */
+    void delete(Long id);
 }

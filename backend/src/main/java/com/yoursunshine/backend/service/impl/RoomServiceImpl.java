@@ -54,4 +54,15 @@ public class RoomServiceImpl implements RoomService {
             throw new NotFoundException("Room with id " + id + " does not exist");
         }
     }
+
+    @Override
+    public void delete(Long id) {
+        LOGGER.info("delete: {}", id);
+
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+        } else {
+            throw new NotFoundException("Room with id " + id + " does not exist");
+        }
+    }
 }

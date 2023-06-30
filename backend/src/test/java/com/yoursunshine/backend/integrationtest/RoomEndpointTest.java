@@ -132,4 +132,18 @@ public class RoomEndpointTest {
                 .andExpect(status().isNotFound());
     }
 
+    @Test
+    public void givenExistingRoom_whenDelete_thenDeleteAndReturn204() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+                .delete("/rooms/-1"))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void givenNonExistingRoom_whenDelete_thenReturn404() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+                .delete("/rooms/-99"))
+                .andExpect(status().isNotFound());
+    }
+
 }
