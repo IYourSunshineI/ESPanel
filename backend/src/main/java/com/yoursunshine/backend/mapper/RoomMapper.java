@@ -25,6 +25,13 @@ public interface RoomMapper {
     RoomDetailDto entityToDetailDto(Room room);
 
     /**
+     * Map a room detail dto to a room entity
+     * @param room the room to map
+     * @return the mapped room
+     */
+    Room detailDtoToEntity(RoomDetailDto room);
+
+    /**
      * Map a list of room entities to a list of room detail dtos
      * @param rooms the rooms to map
      * @return the mapped rooms

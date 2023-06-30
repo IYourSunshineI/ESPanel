@@ -18,7 +18,7 @@ public class EspGroup {
 
     private String title;
 
-    private String ipAddress;
+    private String ip_address;
 
     @Column(columnDefinition = "boolean default false")
     private boolean state;

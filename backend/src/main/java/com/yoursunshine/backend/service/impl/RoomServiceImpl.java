@@ -46,10 +46,7 @@ public class RoomServiceImpl implements RoomService {
 
         Optional<Room> toUpdate = repository.findById(id);
         if(toUpdate.isPresent()){
-            Room existingRoom = toUpdate.get();
-            existingRoom.setTitle(room.title());
-
-            return mapper.entityToDetailDto(repository.save(existingRoom));
+            return mapper.entityToDetailDto(repository.save(mapper.detailDtoToEntity(room)));
         } else {
             throw new NotFoundException("Room with id " + id + " does not exist");
         }

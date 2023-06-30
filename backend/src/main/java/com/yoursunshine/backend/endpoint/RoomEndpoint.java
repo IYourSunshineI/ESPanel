@@ -58,6 +58,10 @@ public class RoomEndpoint {
         return service.update(id, room);
     }
 
+    /**
+     * Delete a room
+     * @param id the id of the room to delete
+     */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") Long id){
