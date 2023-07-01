@@ -16,6 +16,7 @@ public class EspGroup {
 
     private String title;
 
+    @Column(nullable = false, unique = true)
     private String ip_address;
 
     @Column(columnDefinition = "boolean default false")
