@@ -3,6 +3,8 @@ import {Room} from "./dtos/room";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {RoomSettingsModalComponent} from "./components/room/room-settings-modal/room-settings-modal.component";
 import {SidebarComponent} from "./components/sidebar/sidebar.component";
+import {Group} from "./dtos/group";
+import {GroupService} from "./services/group.service";
 
 @Component({
   selector: 'app-root',
@@ -20,13 +22,16 @@ export class AppComponent {
     title: this.defaultRoomName,
   };
 
+  groups: Group[] = [];
   constructor(
     private modalService: NgbModal,
+    private groupService: GroupService,
   ) {
   }
 
   roomChanged(room: Room) {
     this.room = room;
+    this.loadGroups();
   }
 
   async openRoomSettings() {
@@ -44,5 +49,18 @@ export class AppComponent {
         this.sidebar.loadRooms();
       }
     }
+  }
+
+  private loadGroups() {
+    if(!this.room.id) return;
+
+    this.groupService.getAll(this.room.id).subscribe( {
+      next: data => {
+        this.groups = data;
+      },
+      error: e => {
+        console.error('Could not load groups: ', e);
+      }
+    });
   }
 }
