@@ -52,6 +52,7 @@
 
 .add-container {
   height: 50px;
+  min-height: 50px;
   width: 100%;
   border-radius: 20px;
   background: map-get($custom-colors, "dark-default");
