@@ -38,7 +38,7 @@ public class GroupServiceTest {
 
     @Test
     public void givenNothing_whenCreateWithValidData_thenCreateAndReturnEntry() {
-        GroupDetailDto group = groupService.create(new GroupCreateDto("TestGroup", "111.111.111.111", -1L));
+        GroupDetailDto group = groupService.create(-1L, new GroupCreateDto("TestGroup", "111.111.111.111", -1L));
         assertNotNull(group);
         assertAll(
                 () -> assertNotNull(group.id()),
@@ -54,7 +54,7 @@ public class GroupServiceTest {
 
     @Test
     public void givenExistingGroups_whenGetAll_thenReturnAllGroups() {
-        List<GroupDetailDto> groups = groupService.getAll();
+        List<GroupDetailDto> groups = groupService.getAll(-1L);
         assertNotNull(groups);
         assertEquals(2, groups.size());
     }
@@ -82,9 +82,9 @@ public class GroupServiceTest {
 
     @Test
     public void givenExistingGroup_whenDelete_thenDelete() {
-        int sizeBefore = groupService.getAll().size();
+        int sizeBefore = groupService.getAll(-1L).size();
         groupService.delete(-1L);
-        int sizeAfter = groupService.getAll().size();
+        int sizeAfter = groupService.getAll(-1L).size();
         assertEquals(sizeBefore - 1, sizeAfter);
     }
 

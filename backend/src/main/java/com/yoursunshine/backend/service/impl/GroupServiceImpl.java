@@ -31,15 +31,15 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public GroupDetailDto create(GroupCreateDto group) {
-        LOGGER.info("create: {}", group);
+    public GroupDetailDto create(Long room_id, GroupCreateDto group) {
+        LOGGER.info("create: room_id: {}, {}", room_id, group);
 
-        Optional<Room> room = roomRepository.findById(group.room_id());
+        Optional<Room> room = roomRepository.findById(room_id);
         Room foundRoom;
         if(room.isPresent()){
             foundRoom = room.get();
         } else {
-            throw new NotFoundException("Room with id " + group.room_id() + " does not exist");
+            throw new NotFoundException("Room with id " + room_id + " does not exist");
         }
 
         EspGroup toCreate = mapper.createDtoToEntity(group);
@@ -48,9 +48,9 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public List<GroupDetailDto> getAll() {
+    public List<GroupDetailDto> getAll(Long room_id) {
         LOGGER.info("getAll");
-        return mapper.entityListToDetailDtoList(repository.findAll());
+        return mapper.entityListToDetailDtoList(repository.getAll(room_id));
     }
 
     @Override

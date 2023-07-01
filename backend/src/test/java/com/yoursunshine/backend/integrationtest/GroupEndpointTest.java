@@ -52,7 +52,7 @@ public class GroupEndpointTest {
         String json = objectMapper.writeValueAsString(new GroupCreateDto("TestGroup", "111.111.111.111", -1L));
 
         byte[] body = mockMvc.perform(MockMvcRequestBuilders
-                .post("/groups")
+                .post("/rooms/-1/groups")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
                 .andExpect(status().isCreated())
@@ -79,7 +79,7 @@ public class GroupEndpointTest {
         String json = objectMapper.writeValueAsString(new GroupCreateDto("title", "abcs", -1L));
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/groups")
+                        .post("/rooms/-1/groups")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isUnprocessableEntity());
@@ -88,7 +88,7 @@ public class GroupEndpointTest {
     @Test
     public void givenExistingGroups_whenGetAll_thenReturnAllGroupsAnd200() throws Exception {
         byte[] body = mockMvc.perform(MockMvcRequestBuilders
-                        .get("/groups"))
+                        .get("/rooms/-1/groups"))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
@@ -105,7 +105,7 @@ public class GroupEndpointTest {
         String json = objectMapper.writeValueAsString(new GroupDetailDto(-1L, "TestGroup", "2.2.2.2", true, -1L));
 
         byte[] body = mockMvc.perform(MockMvcRequestBuilders
-                        .put("/groups/-1")
+                        .put("/rooms/-1/groups/-1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isOk())
@@ -131,7 +131,7 @@ public class GroupEndpointTest {
         String json = objectMapper.writeValueAsString(new GroupDetailDto(-99L, "TestGroup", "1.1.1.1", true, -1L));
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .put("/groups/-99")
+                        .put("/rooms/-1/groups/-99")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isNotFound());
@@ -140,14 +140,14 @@ public class GroupEndpointTest {
     @Test
     public void givenExistingGroup_whenDelete_thenDeleteAnd204() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-                        .delete("/groups/-1"))
+                        .delete("/rooms/-1/groups/-1"))
                 .andExpect(status().isNoContent());
     }
 
     @Test
     public void givenNonExistingGroup_whenDelete_thenReturn404() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-                        .delete("/groups/-99"))
+                        .delete("/rooms/-1/groups/-99"))
                 .andExpect(status().isNotFound());
     }
 }

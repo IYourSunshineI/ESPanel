@@ -11,16 +11,18 @@ public interface GroupService {
 
     /**
      * Create a new group
+     * @param room_id the id of the room to create the group in
      * @param group the group to create
      * @return the created group
      */
-    GroupDetailDto create(GroupCreateDto group);
+    GroupDetailDto create(Long room_id, GroupCreateDto group);
 
     /**
-     * Get all groups
+     * Get all groups in a room
+     * @param room_id the id of the room to get the groups from
      * @return all groups
      */
-    List<GroupDetailDto> getAll();
+    List<GroupDetailDto> getAll(Long room_id);
 
     /**
      * Update a group

@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping(value = GroupEndpoint.BASE_PATH)
 public class GroupEndpoint {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    static final String BASE_PATH = "/groups";
+    static final String BASE_PATH = "/rooms";
     private final GroupService service;
 
     public GroupEndpoint(GroupService groupService) {
@@ -28,22 +28,22 @@ public class GroupEndpoint {
      * @param group the group to create
      * @return the created group
      */
-    @PostMapping
+    @PostMapping("/{room_id}/groups")
     @ResponseStatus(HttpStatus.CREATED)
-    public GroupDetailDto create(@Valid @RequestBody GroupCreateDto group){
-        LOGGER.info("POST " + BASE_PATH + "\nBody: {}", group);
-        return service.create(group);
+    public GroupDetailDto create(@PathVariable("room_id") Long room_id, @Valid @RequestBody GroupCreateDto group){
+        LOGGER.info("POST " + BASE_PATH + "/" + room_id + "/groups" + "\nBody: {}", group);
+        return service.create(room_id, group);
     }
 
     /**
      * Get all groups
      * @return all groups
      */
-    @GetMapping()
+    @GetMapping("/{room_id}/groups")
     @ResponseStatus(HttpStatus.OK)
-    public List<GroupDetailDto> getAll(){
-        LOGGER.info("GET " + BASE_PATH);
-        return service.getAll();
+    public List<GroupDetailDto> getAll(@PathVariable("room_id") Long room_id){
+        LOGGER.info("GET " + BASE_PATH + "/" + room_id + "/groups");
+        return service.getAll(room_id);
     }
 
     /**
@@ -52,10 +52,10 @@ public class GroupEndpoint {
      * @param group the group to update
      * @return the updated group
      */
-    @PutMapping("/{id}")
+    @PutMapping("/{room_id}/groups/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public GroupDetailDto update(@PathVariable("id") Long id, @Valid @RequestBody GroupDetailDto group){
-        LOGGER.info("PUT " + BASE_PATH + "/{}", id);
+    public GroupDetailDto update(@PathVariable("room_id") Long room_id, @PathVariable("id") Long id, @Valid @RequestBody GroupDetailDto group){
+        LOGGER.info("PUT " + BASE_PATH + "/{}/groups/{}", room_id, id);
         return service.update(id, group);
     }
 
@@ -63,10 +63,10 @@ public class GroupEndpoint {
      * Delete a group
      * @param id the id of the group to delete
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{room_id}/groups/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable("id") Long id){
-        LOGGER.info("DELETE " + BASE_PATH + "/{}", id);
+    public void delete(@PathVariable("room_id") Long room_id, @PathVariable("id") Long id){
+        LOGGER.info("DELETE " + BASE_PATH + "/{}/groups/{}", room_id, id);
         service.delete(id);
     }
 }
