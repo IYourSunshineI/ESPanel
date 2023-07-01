@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RoomCreateModalComponent } from './components/room/room-create-modal/room-create-modal.component';
 import {FormsModule} from "@angular/forms";
 import { RoomSettingsModalComponent } from './components/room/room-settings-modal/room-settings-modal.component';
+import { GroupCreateModalComponent } from './components/group/group-create-modal/group-create-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RoomSettingsModalComponent } from './components/room/room-settings-moda
     SidebarComponent,
     RoomCreateModalComponent,
     RoomSettingsModalComponent,
+    GroupCreateModalComponent,
   ],
   imports: [
     BrowserModule,

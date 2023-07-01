@@ -1,14 +1,8 @@
 @import "src/styles.scss";
 
 .button-group {
-  margin-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  .left {
-    display:flex;
-    flex-direction: row;
-    gap: 5px;
-  }
+  margin-top: 20px;
 }
