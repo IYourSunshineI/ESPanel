@@ -20,7 +20,7 @@
   <app-sidebar (roomChanged)="roomChanged($event)"/>
 
   <div class="groups-container">
-    <app-group *ngFor="let i of this.groups"></app-group>
+    <app-group *ngFor="let i of this.groups" [group]="i"></app-group>
     <div class="add-container" (click)="this.createGroup()">
       <div class="material-symbols-outlined">add</div>
     </div>

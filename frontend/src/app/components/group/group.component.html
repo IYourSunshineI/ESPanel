@@ -2,10 +2,10 @@
   <div class="header">
     <div class="right">
       <div class="title">
-        Title
+        {{ this.group.title }}
       </div>
       <div class="switch">
-        <app-switch></app-switch>
+        <app-switch [checked]="this.group.state"></app-switch>
       </div>
     </div>
     <div>

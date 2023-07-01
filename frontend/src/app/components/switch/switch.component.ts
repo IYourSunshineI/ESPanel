@@ -8,6 +8,7 @@ import {EspService} from "../../services/esp.service";
 })
 export class SwitchComponent {
   @Input() title: string;
+  @Input() checked: boolean;
 
   constructor(
     private espService: EspService
