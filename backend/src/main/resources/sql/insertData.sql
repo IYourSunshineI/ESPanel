@@ -1,10 +1,10 @@
 DELETE
-FROM ESP_GROUP
-WHERE id < 1;
+FROM ESP_GROUP;
+/*WHERE id < 1;*/
 
 DELETE
-FROM ROOM
-WHERE id < 1;
+FROM ROOM;
+/*WHERE id < 1;*/
 
 INSERT INTO ROOM (id, title)
 VALUES (-1, 'Room 1'),
