@@ -49,7 +49,7 @@ public class GroupEndpointTest {
 
     @Test
     public void givenNothing_whenCreateWithValidData_thenCreateAndReturnEntryAnd201() throws Exception{
-        String json = objectMapper.writeValueAsString(new GroupCreateDto("TestGroup", "111.111.111.111", -1L));
+        String json = objectMapper.writeValueAsString(new GroupCreateDto("TestGroup", "111.111.111.111"));
 
         byte[] body = mockMvc.perform(MockMvcRequestBuilders
                 .post("/rooms/-1/groups")
@@ -76,7 +76,7 @@ public class GroupEndpointTest {
 
     @Test
     public void givenNothing_whenCreateWithInvalidData_thenReturn422() throws Exception {
-        String json = objectMapper.writeValueAsString(new GroupCreateDto("title", "abcs", -1L));
+        String json = objectMapper.writeValueAsString(new GroupCreateDto("title", "abcs"));
 
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/rooms/-1/groups")

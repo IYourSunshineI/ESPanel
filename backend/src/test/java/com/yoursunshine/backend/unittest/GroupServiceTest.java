@@ -38,7 +38,7 @@ public class GroupServiceTest {
 
     @Test
     public void givenNothing_whenCreateWithValidData_thenCreateAndReturnEntry() {
-        GroupDetailDto group = groupService.create(-1L, new GroupCreateDto("TestGroup", "111.111.111.111", -1L));
+        GroupDetailDto group = groupService.create(-1L, new GroupCreateDto("TestGroup", "111.111.111.111"));
         assertNotNull(group);
         assertAll(
                 () -> assertNotNull(group.id()),

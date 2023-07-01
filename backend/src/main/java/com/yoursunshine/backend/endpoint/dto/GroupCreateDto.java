@@ -9,9 +9,6 @@ public record GroupCreateDto(
         @Size(min = 1, max = 255, message = "Title must be between 1 and 255 characters")
         String title,
         @Pattern(regexp = "^([0-9]{1,3}\\.){3}[0-9]{1,3}$", message = "Invalid IP address")
-        String ip_address,
-
-        @NotNull(message = "No room given")
-        Long room_id
+        String ip_address
 ) {
 }
