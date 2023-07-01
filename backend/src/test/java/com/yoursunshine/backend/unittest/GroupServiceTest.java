@@ -38,14 +38,14 @@ public class GroupServiceTest {
 
     @Test
     public void givenNothing_whenCreateWithValidData_thenCreateAndReturnEntry() {
-        GroupDetailDto group = groupService.create(-1L, new GroupCreateDto("TestGroup", "111.111.111.111"));
+        GroupDetailDto group = groupService.create(-1L, new GroupCreateDto("TestGroup", "1.1.1.1"));
         assertNotNull(group);
         assertAll(
                 () -> assertNotNull(group.id()),
                 () -> assertNotNull(group.title()),
                 () -> assertEquals("TestGroup", group.title()),
                 () -> assertNotNull(group.ip_address()),
-                () -> assertEquals("111.111.111.111", group.ip_address()),
+                () -> assertEquals("1.1.1.1", group.ip_address()),
                 () -> assertFalse(group.state()),
                 () -> assertNotNull(group.room_id()),
                 () -> assertEquals(-1L, group.room_id())
@@ -61,14 +61,14 @@ public class GroupServiceTest {
 
     @Test
     public void givenExistingGroup_whenUpdateWithValidData_thenUpdateAndReturnEntry() {
-        GroupDetailDto group = groupService.update(-1L, new GroupDetailDto(-1L, "TestGroup", "222.222.222.222", true, -2L));
+        GroupDetailDto group = groupService.update(-1L, new GroupDetailDto(-1L, "TestGroup", "2.2.2.2", true, -2L));
         assertNotNull(group);
         assertAll(
                 () -> assertNotNull(group.id()),
                 () -> assertNotNull(group.title()),
                 () -> assertEquals("TestGroup", group.title()),
                 () -> assertNotNull(group.ip_address()),
-                () -> assertEquals("222.222.222.222", group.ip_address()),
+                () -> assertEquals("2.2.2.2", group.ip_address()),
                 () -> assertTrue(group.state()),
                 () -> assertNotNull(group.room_id()),
                 () -> assertEquals(-2L, group.room_id())
@@ -77,7 +77,7 @@ public class GroupServiceTest {
 
     @Test
     public void givenNonExistingGroup_whenUpdateWithValidData_thenThrowNotFoundException() {
-        assertThrows(NotFoundException.class, () -> groupService.update(-99L, new GroupDetailDto(-99L, "TestGroup", "111.111.111.111", true, -1L)));
+        assertThrows(NotFoundException.class, () -> groupService.update(-99L, new GroupDetailDto(-99L, "TestGroup", "1.1.1.1", true, -1L)));
     }
 
     @Test

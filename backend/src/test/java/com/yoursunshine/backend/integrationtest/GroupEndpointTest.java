@@ -49,7 +49,7 @@ public class GroupEndpointTest {
 
     @Test
     public void givenNothing_whenCreateWithValidData_thenCreateAndReturnEntryAnd201() throws Exception{
-        String json = objectMapper.writeValueAsString(new GroupCreateDto("TestGroup", "111.111.111.111"));
+        String json = objectMapper.writeValueAsString(new GroupCreateDto("TestGroup", "1.1.1.1"));
 
         byte[] body = mockMvc.perform(MockMvcRequestBuilders
                 .post("/rooms/-1/groups")
@@ -67,7 +67,7 @@ public class GroupEndpointTest {
                 () -> assertNotNull(group.id()),
                 () -> assertEquals("TestGroup", group.title()),
                 () -> assertNotNull(group.ip_address()),
-                () -> assertEquals("111.111.111.111", group.ip_address()),
+                () -> assertEquals("1.1.1.1", group.ip_address()),
                 () -> assertFalse(group.state()),
                 () -> assertNotNull(group.room_id()),
                 () -> assertEquals(-1L, group.room_id())
