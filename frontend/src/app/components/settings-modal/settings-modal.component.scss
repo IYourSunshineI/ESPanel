@@ -43,3 +43,11 @@
     background: map-get($custom-colors, "container-dark");
   }
 }
+
+.selected {
+  background: map-get($custom-colors, "container-dark")
+}
+
+.foldout{
+  padding-left: 1.5rem;
+}

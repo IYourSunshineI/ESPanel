@@ -4,13 +4,17 @@
     <div class="clickable">
       Room
     </div>
-    <div class="clickable">
+    <div class="clickable" (click)="showGroups = !showGroups; loadGroups();">
       Groups
     </div>
-    <div class="clickable">
-      Modules
+    <div *ngIf="showGroups">
+      <div class="clickable foldout"
+           *ngFor="let g of this.groups"
+      >
+        - {{g.title}}
+      </div>
     </div>
-  </div>
+    </div>
   <div class="right">
     <app-room-settings [room]="this.updatedRoom"
                        (updatedRoom)="updateRoom($event)"
