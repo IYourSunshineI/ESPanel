@@ -166,6 +166,7 @@ html, body {
 }
 
 .button-save {
+  cursor: pointer;
   border-radius: 10px;
   border: 2px solid map-get($custom-colors, "dark-default");
   padding: 0.5rem;
@@ -187,6 +188,7 @@ html, body {
 }
 
 .button-cancel {
+  cursor: pointer;
   border-radius: 10px;
   border: 2px solid map-get($custom-colors, "dark-default");
   padding: 0.5rem;
@@ -208,6 +210,7 @@ html, body {
 }
 
 .button-delete {
+  cursor: pointer;
   border-radius: 10px;
   border: 2px solid map-get($custom-colors, "error");
   padding: 0.5rem;

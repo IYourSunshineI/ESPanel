@@ -10,8 +10,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoomCreateModalComponent } from './components/room/room-create-modal/room-create-modal.component';
 import {FormsModule} from "@angular/forms";
-import { RoomSettingsModalComponent } from './components/room/room-settings-modal/room-settings-modal.component';
 import { GroupCreateModalComponent } from './components/group/group-create-modal/group-create-modal.component';
+import { SettingsModalComponent } from './components/settings-modal/settings-modal.component';
+import { RoomSettingsComponent } from './components/room/room-settings/room-settings.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +23,9 @@ import { GroupCreateModalComponent } from './components/group/group-create-modal
     ModuleComponent,
     SidebarComponent,
     RoomCreateModalComponent,
-    RoomSettingsModalComponent,
     GroupCreateModalComponent,
+    SettingsModalComponent,
+    RoomSettingsComponent,
   ],
   imports: [
     BrowserModule,

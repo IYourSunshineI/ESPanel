@@ -1,0 +1,20 @@
+<div class="modal-body">
+  <div class="left">
+    <div class="title">Settings</div>
+    <div class="clickable">
+      Room
+    </div>
+    <div class="clickable">
+      Groups
+    </div>
+    <div class="clickable">
+      Modules
+    </div>
+  </div>
+  <div class="right">
+    <app-room-settings [room]="this.updatedRoom"
+                       (updatedRoom)="updateRoom($event)"
+                       (dismissReason)="this.activeModal.dismiss($event)"
+    ></app-room-settings>
+  </div>
+</div>
