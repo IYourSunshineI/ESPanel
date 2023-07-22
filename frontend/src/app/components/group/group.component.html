@@ -5,7 +5,7 @@
         {{ this.group.title }}
       </div>
       <div class="switch">
-        <app-switch [checked]="this.group.state"></app-switch>
+        <app-switch [checked]="this.group.state" (valueChanged)="changeState($event)"></app-switch>
       </div>
     </div>
     <div>
