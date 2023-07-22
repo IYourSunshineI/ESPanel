@@ -10,6 +10,7 @@ $custom-colors: (
   "dark-default": #56534E,
   "switch-active": #b9ffb1,
   "error": #ff9a9a,
+  "grayed-out": #9f9f9f,
 );
 
 $body-color: map-get($custom-colors, "dark-default");

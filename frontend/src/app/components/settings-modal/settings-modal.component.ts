@@ -17,6 +17,8 @@ export class SettingsModalComponent implements AfterContentInit {
   groups: Group[] = [];
   showGroups: boolean = false;
 
+  selectedIndex: number = 0;
+
   constructor(
     public activeModal: NgbActiveModal,
     private groupService: GroupService,
@@ -25,6 +27,7 @@ export class SettingsModalComponent implements AfterContentInit {
 
   ngAfterContentInit(): void {
     this.updatedRoom = {...this.room};
+    this.loadGroups();
   }
 
   updateRoom($event: Room) {

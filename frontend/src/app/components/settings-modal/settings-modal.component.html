@@ -1,15 +1,28 @@
 <div class="modal-body">
   <div class="left">
     <div class="title">Settings</div>
-    <div class="clickable">
+    <div class="clickable"
+         [ngClass]="{'selected': selectedIndex === 0}"
+         (click)="selectedIndex = 0"
+    >
       Room
     </div>
-    <div class="clickable" (click)="showGroups = !showGroups; loadGroups();">
+    <div class="clickable" (click)="showGroups = !showGroups; selectedIndex = 1"
+         [ngClass]="{'grayed-out': this.groups.length === 0}"
+    >
       Groups
+      <span class="material-symbols-outlined"
+            *ngIf="showGroups && this.groups.length > 0"
+      >expand_less</span>
+      <span class="material-symbols-outlined"
+            *ngIf="!showGroups && this.groups.length > 0"
+      >expand_more</span>
     </div>
     <div *ngIf="showGroups">
       <div class="clickable foldout"
            *ngFor="let g of this.groups"
+           [ngClass]="{'selected': g === this.groups[selectedIndex - 2]}"
+           (click)="selectedIndex = this.groups.indexOf(g) + 2"
       >
         - {{g.title}}
       </div>

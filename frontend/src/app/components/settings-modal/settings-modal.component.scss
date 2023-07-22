@@ -24,6 +24,8 @@
 }
 
 .clickable {
+  display: flex;
+  flex-direction: row;
   background: none;
   text-align: left;
   font-weight: bold;
@@ -50,4 +52,8 @@
 
 .foldout{
   padding-left: 1.5rem;
+}
+
+.grayed-out {
+  color: map-get($custom-colors, "grayed-out");
 }
