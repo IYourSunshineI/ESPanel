@@ -15,6 +15,7 @@ export class SwitchComponent {
   ) {
   }
 
+  //TEMP !!!!
   valueChanged(event: any): void{
     console.log(event.target.checked);
     this.espService.update(event.target.checked).subscribe({

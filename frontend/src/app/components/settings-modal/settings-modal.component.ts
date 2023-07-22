@@ -19,6 +19,8 @@ export class SettingsModalComponent implements AfterContentInit {
 
   selectedIndex: number = 0;
 
+  dismissReason: string = '';
+
   constructor(
     public activeModal: NgbActiveModal,
     private groupService: GroupService,
@@ -32,12 +34,13 @@ export class SettingsModalComponent implements AfterContentInit {
 
   updateRoom($event: Room) {
     this.room = $event;
-    this.activeModal.dismiss('updated');
+    this.updatedRoom = {...this.room};
+    this.dismissReason = 'updated';
   }
 
   updateGroup($event: Group) {
     this.groups[this.selectedIndex - 2] = $event;
-    this.activeModal.dismiss('updated');
+    this.dismissReason = 'updated';
   }
 
   loadGroups() {

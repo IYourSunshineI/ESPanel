@@ -46,7 +46,7 @@ export class AppComponent {
       await modalRef.result;
     } catch (dismissReason) {
       console.log('dismissed reason: ', dismissReason);
-      if (dismissReason === 'updated' || dismissReason === 'deleted') {
+      if (dismissReason === 'updated' || dismissReason === 'deleted' || dismissReason === 0) {
         this.sidebar.loadRooms();
       }
     }

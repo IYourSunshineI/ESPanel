@@ -34,13 +34,12 @@
     <app-room-settings *ngIf="selectedIndex === 0"
                        [room]="this.updatedRoom"
                        (updatedRoom)="updateRoom($event)"
-                       (dismissReason)="this.activeModal.dismiss($event)"
+                       (dismissReason)="this.activeModal.dismiss(dismissReason === '' ? $event : dismissReason)"
     ></app-room-settings>
     <app-group-settings *ngIf="selectedIndex > 1"
                         [group]="this.groups[selectedIndex - 2]"
                         (updatedGroup)="updateGroup($event)"
-                        (dismissReason)="this.activeModal.dismiss($event)"
-    >
-    </app-group-settings>
+                        (dismissReason)="this.activeModal.dismiss(dismissReason === '' ? $event : dismissReason)"
+    ></app-group-settings>
   </div>
 </div>
