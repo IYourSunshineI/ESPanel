@@ -35,6 +35,11 @@ export class SettingsModalComponent implements AfterContentInit {
     this.activeModal.dismiss('updated');
   }
 
+  updateGroup($event: Group) {
+    this.groups[this.selectedIndex - 2] = $event;
+    this.activeModal.dismiss('updated');
+  }
+
   loadGroups() {
     if(this.groups.length > 0) return;
     if(!this.room.id) return;

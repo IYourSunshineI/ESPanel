@@ -7,7 +7,7 @@
     >
       Room
     </div>
-    <div class="clickable" (click)="showGroups = !showGroups; selectedIndex = 1"
+    <div class="clickable" (click)="showGroups = !showGroups; selectedIndex = (groups.length === 0 || !showGroups ? 0 : 2);"
          [ngClass]="{'grayed-out': this.groups.length === 0}"
     >
       Groups
@@ -24,14 +24,23 @@
            [ngClass]="{'selected': g === this.groups[selectedIndex - 2]}"
            (click)="selectedIndex = this.groups.indexOf(g) + 2"
       >
-        - {{g.title}}
+        <div class="group-title">
+          {{g.title}}
+        </div>
       </div>
     </div>
     </div>
   <div class="right">
-    <app-room-settings [room]="this.updatedRoom"
+    <app-room-settings *ngIf="selectedIndex === 0"
+                       [room]="this.updatedRoom"
                        (updatedRoom)="updateRoom($event)"
                        (dismissReason)="this.activeModal.dismiss($event)"
     ></app-room-settings>
+    <app-group-settings *ngIf="selectedIndex > 1"
+                        [group]="this.groups[selectedIndex - 2]"
+                        (updatedGroup)="updateGroup($event)"
+                        (dismissReason)="this.activeModal.dismiss($event)"
+    >
+    </app-group-settings>
   </div>
 </div>

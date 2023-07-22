@@ -13,6 +13,7 @@ import {FormsModule} from "@angular/forms";
 import { GroupCreateModalComponent } from './components/group/group-create-modal/group-create-modal.component';
 import { SettingsModalComponent } from './components/settings-modal/settings-modal.component';
 import { RoomSettingsComponent } from './components/room/room-settings/room-settings.component';
+import { GroupSettingsComponent } from './components/group/group-settings/group-settings.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { RoomSettingsComponent } from './components/room/room-settings/room-sett
     GroupCreateModalComponent,
     SettingsModalComponent,
     RoomSettingsComponent,
+    GroupSettingsComponent,
   ],
   imports: [
     BrowserModule,
