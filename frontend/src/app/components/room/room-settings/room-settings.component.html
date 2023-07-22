@@ -1,0 +1,16 @@
+<div class="content">
+  <div class="main-container">
+    <input type="text" class="input-text" placeholder="eg. Bedroom"
+           [(ngModel)]="this.room.title"
+           (input)="this.error = false">
+    <div *ngIf="!this.error" class="desc">Title</div>
+    <div *ngIf="this.error" class="err-msg"> {{ this.errorMessage }}</div>
+  </div>
+  <div class="button-container">
+    <div class="button-delete" (click)="delete()">Delete</div>
+    <div class="right">
+      <div class="button-cancel" (click)="cancel()">Close</div>
+      <div class="button-save" (click)="save()">Save</div>
+    </div>
+  </div>
+</div>

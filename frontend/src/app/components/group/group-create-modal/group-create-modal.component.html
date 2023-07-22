@@ -1,0 +1,29 @@
+<div class="modal-body">
+  <div class="title">New Group</div>
+  <input type="text" placeholder="eg. Lamp"
+         [(ngModel)]="this.group.title"
+         [ngClass]="{'input-text': true,
+                     'warn': this.errorTitle}"
+         (input)="this.errorTitle = false">
+  <div class="err-msg" *ngIf="this.errorTitle">
+    {{this.errorMessageTitle}}
+  </div>
+  <div class="desc" *ngIf="!this.errorTitle">Title</div>
+  <input type="text" placeholder="xxx.xxx.xxx.xxx"
+         [(ngModel)]="this.group.ip_address"
+         [ngClass]="{'input-text': true,
+                     'warn': this.errorIp}"
+         (input)="this.errorIp = false">
+  <div class="err-msg" *ngIf="this.errorIp">
+    {{this.errorMessageIp}}
+  </div>
+  <div class="desc" *ngIf="!this.errorIp">IP Address</div>
+  <div class="button-group">
+    <button class="button-cancel" (click)="this.activeModal.dismiss('cancel')">
+      Cancel
+    </button>
+    <button class="button-save" (click)="this.createGroup()">
+      Save
+    </button>
+  </div>
+</div>

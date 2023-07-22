@@ -10,6 +10,7 @@ $custom-colors: (
   "dark-default": #56534E,
   "switch-active": #b9ffb1,
   "error": #ff9a9a,
+  "grayed-out": #9f9f9f,
 );
 
 $body-color: map-get($custom-colors, "dark-default");
@@ -147,6 +148,13 @@ html, body {
   margin-top: 5px;
 }
 
+.desc {
+   margin-top: 5px;
+   margin-left: 0.25rem;
+   font-size: 0.8rem;
+   color: map-get($custom-colors, "dark-default");
+ }
+
 .input-text {
   padding: 0 0.25rem;
   margin-top: 20px;
@@ -159,6 +167,7 @@ html, body {
 }
 
 .button-save {
+  cursor: pointer;
   border-radius: 10px;
   border: 2px solid map-get($custom-colors, "dark-default");
   padding: 0.5rem;
@@ -180,6 +189,7 @@ html, body {
 }
 
 .button-cancel {
+  cursor: pointer;
   border-radius: 10px;
   border: 2px solid map-get($custom-colors, "dark-default");
   padding: 0.5rem;
@@ -201,6 +211,7 @@ html, body {
 }
 
 .button-delete {
+  cursor: pointer;
   border-radius: 10px;
   border: 2px solid map-get($custom-colors, "error");
   padding: 0.5rem;

@@ -49,3 +49,25 @@
   border-radius: 20px;
   background: map-get($custom-colors, "container-light");
 }
+
+.add-container {
+  height: 50px;
+  min-height: 50px;
+  width: 100%;
+  border-radius: 20px;
+  background: map-get($custom-colors, "dark-default");
+  align-self: center;
+
+  color: map-get($custom-colors, "container-light");
+  display: inline-grid;
+  align-items: center;
+  justify-items: center;
+
+  cursor: pointer;
+
+  &:hover {
+    background: map-get($custom-colors, "container-light");
+    color: map-get($custom-colors, "dark-default");
+    border: 3px solid map-get($custom-colors, "dark-default");
+  }
+}

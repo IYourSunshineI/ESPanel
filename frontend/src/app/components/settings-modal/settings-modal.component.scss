@@ -1,0 +1,64 @@
+@import "src/styles.scss";
+
+.modal-body {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  height: 500px;
+  background: map-get($custom-colors, "container-light");
+}
+
+.title {
+  margin-bottom: 1rem;
+}
+
+.left {
+  width: 25%;
+}
+
+.right {
+  width: 75%;
+  height: 100%;
+  border-radius: 20px;
+  background: map-get($custom-colors, "background");
+}
+
+.clickable {
+  display: flex;
+  flex-direction: row;
+  background: none;
+  text-align: left;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  border-radius: 20px;
+  color: map-get($custom-colors, "dark-default");
+
+  &:hover {
+    background: map-get($custom-colors, "container-dark");
+  }
+
+  &:focus {
+    background: map-get($custom-colors, "container-dark");
+  }
+
+  &:active {
+    background: map-get($custom-colors, "container-dark");
+  }
+}
+
+.selected {
+  background: map-get($custom-colors, "container-dark")
+}
+
+.foldout{
+  padding-left: 1.5rem;
+}
+
+.grayed-out {
+  color: map-get($custom-colors, "grayed-out");
+}
+
+.group-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

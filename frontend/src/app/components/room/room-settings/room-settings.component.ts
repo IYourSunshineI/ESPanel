@@ -1,34 +1,34 @@
-import {AfterContentInit, Component} from '@angular/core';
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Room} from "../../../dtos/room";
 import {RoomService} from "../../../services/room.service";
 
 @Component({
-  selector: 'app-room-settings-modal',
-  templateUrl: './room-settings-modal.component.html',
-  styleUrls: ['./room-settings-modal.component.scss']
+  selector: 'app-room-settings',
+  templateUrl: './room-settings.component.html',
+  styleUrls: ['./room-settings.component.scss']
 })
-export class RoomSettingsModalComponent implements AfterContentInit{
+export class RoomSettingsComponent {
 
-  room: Room;
-  updatedRoom: Room;
+  @Input() room: Room;
+  @Output() updatedRoom: EventEmitter<Room> = new EventEmitter<Room>();
+  @Output() dismissReason: EventEmitter<string> = new EventEmitter<string>();
   error: boolean = false;
   errorMessage: string = '';
 
-  ngAfterContentInit(): void {
-    this.updatedRoom = {...this.room};
-  }
   constructor(
-    public activeModal: NgbActiveModal,
     private service: RoomService,
   ) { }
 
+  cancel() {
+    this.dismissReason.emit('cancel');
+  }
+
   save() {
-    this.service.update(this.updatedRoom).subscribe({
+    this.service.update(this.room).subscribe({
       next: data => {
-        this.updatedRoom = data;
+        this.room = data;
         console.log('updated room: ', data);
-        this.activeModal.dismiss('updated');
+        this.updatedRoom.emit(data);
       },
       error: e => {
         console.error('error updating room: ', e);
@@ -45,7 +45,7 @@ export class RoomSettingsModalComponent implements AfterContentInit{
     this.service.delete(this.room.id).subscribe({
       next: data => {
         console.log('deleted room: ', data);
-        this.activeModal.dismiss('deleted');
+        this.dismissReason.emit('deleted');
       },
       error: e => {
         console.error('error deleting room: ', e);

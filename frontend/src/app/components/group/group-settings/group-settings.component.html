@@ -1,0 +1,22 @@
+<div class="content">
+  <div class="main-container">
+    <input type="text" class="input-text" placeholder="eg. Lamp"
+           [(ngModel)]="this.group.title"
+           (input)="this.errorTitle = false">
+    <div *ngIf="!this.errorTitle" class="desc">Title</div>
+    <div *ngIf="this.errorTitle" class="err-msg"> {{ this.errorMessageTitle }}</div>
+
+    <input type="text" class="input-text" placeholder="xxx.xxx.xxx.xxx"
+           [(ngModel)]="this.group.ip_address"
+           (input)="this.errorIp = false">
+    <div *ngIf="!this.errorIp" class="desc">IP Address</div>
+    <div *ngIf="this.errorIp" class="err-msg"> {{ this.errorMessageIp }}</div>
+  </div>
+  <div class="button-container">
+    <div class="button-delete" (click)="delete()">Delete</div>
+    <div class="right">
+      <div class="button-cancel" (click)="cancel()">Close</div>
+      <div class="button-save" (click)="save()">Save</div>
+    </div>
+  </div>
+</div>
