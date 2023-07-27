@@ -10,6 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
+@Table(uniqueConstraints = {
+        @UniqueConstraint(name = "PinNumberAndGroup",
+                columnNames = {"pinNumber", "group_id"})
+})
 public abstract class KnobModule {
     @Id
     @GeneratedValue
