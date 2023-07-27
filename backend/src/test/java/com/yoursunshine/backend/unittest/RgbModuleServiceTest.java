@@ -3,6 +3,7 @@ package com.yoursunshine.backend.unittest;
 import com.yoursunshine.backend.datagenerator.DataGeneratorBean;
 import com.yoursunshine.backend.endpoint.dto.KnobModuleDetailDto;
 import com.yoursunshine.backend.endpoint.dto.RgbModuleCreateDto;
+import com.yoursunshine.backend.endpoint.dto.RgbModuleUpdateDto;
 import com.yoursunshine.backend.service.RgbModuleService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,5 +49,27 @@ public class RgbModuleServiceTest {
                 () -> assertNotNull(module.group_id()),
                 () -> assertEquals(-1L, module.group_id())
         );
+    }
+
+    @Test
+    public void givenExistingRgbModule_whenUpdateWithValidData_thneUpdateAndReturnEntry() {
+        KnobModuleDetailDto module = rgbModuleService.update(-3L, new RgbModuleUpdateDto(-3L, "TestModule", 16, "#FF00FF", -1L));
+        assertNotNull(module);
+        assertAll(
+                () -> assertNotNull(module.id()),
+                () -> assertNotNull(module.title()),
+                () -> assertEquals("TestModule", module.title()),
+                () -> assertNotNull(module.pinNumber()),
+                () -> assertEquals(16, module.pinNumber()),
+                () -> assertNotNull(module.color()),
+                () -> assertEquals("#FF00FF", module.color()),
+                () -> assertNotNull(module.group_id()),
+                () -> assertEquals(-1L, module.group_id())
+        );
+    }
+
+    @Test
+    public void givenNonExistingRgbModule_whenUpdateWithValidData_thenThrowNotFoundException() {
+        assertThrows(Exception.class, () -> rgbModuleService.update(-100L, new RgbModuleUpdateDto(-100L, "TestModule", 16, "#FF00FF", -1L)));
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yoursunshine.backend.datagenerator.DataGeneratorBean;
 import com.yoursunshine.backend.endpoint.dto.KnobModuleDetailDto;
 import com.yoursunshine.backend.endpoint.dto.RgbModuleCreateDto;
+import com.yoursunshine.backend.endpoint.dto.RgbModuleUpdateDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -81,5 +82,52 @@ public class RgbModuleEndpointTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    public void givenExistingRgbModule_whenUpdateWithValidData_thenReturnUpdatedModuleAnd200() throws Exception {
+        String json = objectMapper.writeValueAsString(new RgbModuleUpdateDto(-3L, "TestRGB", 16, "#FF00FF", -1L));
+
+        byte[] body = mockMvc.perform(MockMvcRequestBuilders
+                        .put("/rooms/-1/groups/-1/rgbmodules/-3")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse()
+                .getContentAsByteArray();
+
+        KnobModuleDetailDto module = objectMapper.readValue(body, KnobModuleDetailDto.class);
+
+        assertAll(
+                () -> assertNotNull(module),
+                () -> assertEquals(-3L, module.id()),
+                () -> assertEquals("TestRGB", module.title()),
+                () -> assertEquals(16, module.pinNumber()),
+                () -> assertEquals("#FF00FF", module.color()),
+                () -> assertEquals(-1L, module.group_id())
+        );
+    }
+
+    @Test
+    public void givenExistingRgbModule_whenUpdateWithInvalidData_thenReturn422() throws Exception {
+        String json = objectMapper.writeValueAsString(new RgbModuleUpdateDto(-3L, "", 17, "#FF00FF", -1L));
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .put("/rooms/-1/groups/-1/rgbmodules/-3")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    public void givenNonExistingRgbModule_whenUpdateWithValidData_thenReturn404() throws Exception {
+        String json = objectMapper.writeValueAsString(new RgbModuleUpdateDto(-99L, "TestRGB", 16, "#FF00FF", -1L));
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .put("/rooms/-1/groups/-1/rgbmodules/-99")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isNotFound());
     }
 }
