@@ -1,6 +1,7 @@
 package com.yoursunshine.backend.service.impl;
 
 import com.yoursunshine.backend.endpoint.dto.KnobModuleDetailDto;
+import com.yoursunshine.backend.exception.NotFoundException;
 import com.yoursunshine.backend.mapper.KnobModuleMapper;
 import com.yoursunshine.backend.repository.KnobModuleRepository;
 import com.yoursunshine.backend.service.KnobModuleService;
@@ -27,5 +28,16 @@ public class KnobModuleServiceImpl implements KnobModuleService {
     public List<KnobModuleDetailDto> getAll() {
         LOGGER.info("getAll");
         return mapper.entityListToDetailDtoList(repository.findAll());
+    }
+
+    @Override
+    public void delete(Long id) {
+        LOGGER.info("delete: {}", id);
+
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+        } else {
+            throw new NotFoundException("KnobModule with id " + id + " does not exist");
+        }
     }
 }

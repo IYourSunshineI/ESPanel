@@ -30,6 +30,21 @@ public class KnobModuleEndpoint {
     public List<KnobModuleDetailDto> getAll(@PathVariable("room_id") Long room_id,
                                             @PathVariable("group_id") Long group_id){
         LOGGER.info("GET " + BASE_PATH);
+        //TODO: return only knob modules from the group
         return service.getAll();
     }
+
+    /**
+     * Delete a knob module
+     * @param id the id of the knob module to delete
+     */
+    @DeleteMapping("/{room_id}/groups/{group_id}/knobmodules/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("room_id") Long room_id,
+                       @PathVariable("group_id") Long group_id,
+                       @PathVariable("id") Long id){
+        LOGGER.info("DELETE " + BASE_PATH + "/{}/groups/{}/knobmodules/{}", room_id, group_id, id);
+        service.delete(id);
+    }
+
 }

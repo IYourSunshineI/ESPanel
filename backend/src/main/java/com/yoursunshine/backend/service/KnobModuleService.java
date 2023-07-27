@@ -13,4 +13,10 @@ public interface KnobModuleService {
      * @return all knob modules
      */
     List<KnobModuleDetailDto> getAll();
+
+    /**
+     * Delete a knob module
+     * @param id the id of the knob module to delete
+     */
+    void delete(Long id);
 }
