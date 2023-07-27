@@ -2,11 +2,10 @@ package com.yoursunshine.backend.service.impl;
 
 import com.yoursunshine.backend.endpoint.dto.KnobModuleDetailDto;
 import com.yoursunshine.backend.endpoint.dto.RgbModuleCreateDto;
+import com.yoursunshine.backend.endpoint.dto.RgbModuleUpdateDto;
 import com.yoursunshine.backend.entity.EspGroup;
-import com.yoursunshine.backend.entity.KnobModule;
 import com.yoursunshine.backend.entity.RgbModule;
 import com.yoursunshine.backend.exception.NotFoundException;
-import com.yoursunshine.backend.mapper.KnobModuleMapper;
 import com.yoursunshine.backend.mapper.RgbModuleMapper;
 import com.yoursunshine.backend.repository.GroupRepository;
 import com.yoursunshine.backend.repository.RgbModuleRepository;
@@ -48,5 +47,26 @@ public class RgbModuleServiceImpl implements RgbModuleService {
         RgbModule toCreate = mapper.createDtoToEntity(rgbModule);
         toCreate.setGroup(foundGroup);
         return mapper.entityToDetailDto(repository.save(toCreate));
+    }
+
+    @Override
+    public KnobModuleDetailDto update(Long id, RgbModuleUpdateDto rgbModule) {
+        LOGGER.info("update: {}", rgbModule);
+
+        Optional<RgbModule> toUpdate = repository.findById(id);
+        if(toUpdate.isPresent()){
+            Optional<EspGroup> group = groupRepository.findById(rgbModule.group_id());
+            EspGroup foundGroup;
+            if(group.isPresent()){
+                foundGroup = group.get();
+            } else {
+                throw new NotFoundException("Group with id " + rgbModule.group_id() + " does not exist");
+            }
+            RgbModule updated = mapper.updateDtoToEntity(rgbModule);
+            updated.setGroup(foundGroup);
+            return mapper.entityToDetailDto(repository.save(updated));
+        } else {
+            throw new NotFoundException("RgbModule with id " + id + " does not exist");
+        }
     }
 }
