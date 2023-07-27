@@ -1,6 +1,7 @@
 package com.yoursunshine.backend.mapper;
 
 import com.yoursunshine.backend.endpoint.dto.DimmerModuleCreateDto;
+import com.yoursunshine.backend.endpoint.dto.DimmerModuleUpdateDto;
 import com.yoursunshine.backend.endpoint.dto.KnobModuleDetailDto;
 import com.yoursunshine.backend.entity.DimmerModule;
 import org.mapstruct.Mapper;
@@ -23,4 +24,11 @@ public interface DimmerModuleMapper {
      */
     @Mapping(expression = "java(dimmerModule.getGroup().getId())", target = "group_id")
     KnobModuleDetailDto entityToDetailDto(DimmerModule dimmerModule);
+
+    /**
+     * Map a dimmer module dto to a dimmer module entity
+     * @param dimmerModule the dimmer module to map
+     * @return the mapped dimmer module
+     */
+    DimmerModule updateDtoToEntity(DimmerModuleUpdateDto dimmerModule);
 }

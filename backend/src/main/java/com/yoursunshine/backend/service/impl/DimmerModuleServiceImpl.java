@@ -1,6 +1,7 @@
 package com.yoursunshine.backend.service.impl;
 
 import com.yoursunshine.backend.endpoint.dto.DimmerModuleCreateDto;
+import com.yoursunshine.backend.endpoint.dto.DimmerModuleUpdateDto;
 import com.yoursunshine.backend.endpoint.dto.KnobModuleDetailDto;
 import com.yoursunshine.backend.entity.DimmerModule;
 import com.yoursunshine.backend.entity.EspGroup;
@@ -46,5 +47,26 @@ public class DimmerModuleServiceImpl implements DimmerModuleService {
         DimmerModule toCreate = mapper.createDtoToEntity(dimmerModule);
         toCreate.setGroup(foundGroup);
         return mapper.entityToDetailDto(repository.save(toCreate));
+    }
+
+    @Override
+    public KnobModuleDetailDto update(Long id, DimmerModuleUpdateDto dimmerModule) {
+        LOGGER.info("update: {}", dimmerModule);
+
+        Optional<DimmerModule> toUpdate = repository.findById(id);
+        if(toUpdate.isPresent()) {
+            Optional<EspGroup> group = groupRepository.findById(dimmerModule.group_id());
+            EspGroup foundGroup;
+            if (group.isPresent()) {
+                foundGroup = group.get();
+            } else {
+                throw new NotFoundException("Group with id " + dimmerModule.group_id() + " does not exist");
+            }
+            DimmerModule updated = mapper.updateDtoToEntity(dimmerModule);
+            updated.setGroup(foundGroup);
+            return mapper.entityToDetailDto(repository.save(updated));
+        } else {
+            throw new NotFoundException("DimmerModule with id " + id + " does not exist");
+        }
     }
 }
