@@ -5,7 +5,7 @@ import java.awt.*;
 public record KnobModuleDetailDto(
         Long id,
         String title,
-        Integer pin_number,
+        Integer pinNumber,
         String color,
         Integer brightness
 ) {
