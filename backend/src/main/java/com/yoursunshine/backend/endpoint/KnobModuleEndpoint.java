@@ -22,16 +22,15 @@ public class KnobModuleEndpoint {
     }
 
     /**
-     * Get all knob modules
+     * Get all knob modules from a group
      * @return all knob modules
      */
     @GetMapping("/{room_id}/groups/{group_id}/knobmodules")
     @ResponseStatus(HttpStatus.OK)
     public List<KnobModuleDetailDto> getAll(@PathVariable("room_id") Long room_id,
                                             @PathVariable("group_id") Long group_id){
-        LOGGER.info("GET " + BASE_PATH);
-        //TODO: return only knob modules from the group
-        return service.getAll();
+        LOGGER.info("GET " + BASE_PATH + "/{}/groups/{}/knobmodules", room_id, group_id);
+        return service.getAll(group_id);
     }
 
     /**

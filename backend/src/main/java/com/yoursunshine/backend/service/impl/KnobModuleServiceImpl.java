@@ -25,9 +25,9 @@ public class KnobModuleServiceImpl implements KnobModuleService {
 
 
     @Override
-    public List<KnobModuleDetailDto> getAll() {
+    public List<KnobModuleDetailDto> getAll(Long group_id) {
         LOGGER.info("getAll");
-        return mapper.entityListToDetailDtoList(repository.findAll());
+        return mapper.entityListToDetailDtoList(repository.getAll(group_id));
     }
 
     @Override

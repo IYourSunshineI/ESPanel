@@ -9,10 +9,11 @@ import java.util.List;
 public interface KnobModuleService {
 
     /**
-     * Get all knob modules
+     * Get all knob modules from a group
+     * @param group_id the id of the group
      * @return all knob modules
      */
-    List<KnobModuleDetailDto> getAll();
+    List<KnobModuleDetailDto> getAll(Long group_id);
 
     /**
      * Delete a knob module
