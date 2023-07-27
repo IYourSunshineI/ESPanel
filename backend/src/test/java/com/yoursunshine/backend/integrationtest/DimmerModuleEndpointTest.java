@@ -3,6 +3,7 @@ package com.yoursunshine.backend.integrationtest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yoursunshine.backend.datagenerator.DataGeneratorBean;
 import com.yoursunshine.backend.endpoint.dto.DimmerModuleCreateDto;
+import com.yoursunshine.backend.endpoint.dto.DimmerModuleUpdateDto;
 import com.yoursunshine.backend.endpoint.dto.KnobModuleDetailDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -80,5 +81,51 @@ public class DimmerModuleEndpointTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    public void givenExistingDimmerModule_whenUpdateWithValidData_thenReturnUpdatedModuleAnd200() throws Exception {
+        String json = objectMapper.writeValueAsString(new DimmerModuleUpdateDto(-2L, "TestDimmer", 16, 100, -2L));
+
+        byte[] body = mockMvc.perform(MockMvcRequestBuilders
+                        .put("/rooms/-1/groups/-2/dimmermodules/-2")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse()
+                .getContentAsByteArray();
+
+        KnobModuleDetailDto module = objectMapper.readValue(body, KnobModuleDetailDto.class);
+
+        assertAll(
+                () -> assertNotNull(module),
+                () -> assertNotNull(module.id()),
+                () -> assertEquals("TestDimmer", module.title()),
+                () -> assertEquals(16, module.pinNumber()),
+                () -> assertEquals(100, module.brightness())
+        );
+    }
+
+    @Test
+    public void givenExistingDimmerModule_whenUpdateWithInvalidData_thenReturn422() throws Exception {
+        String json = objectMapper.writeValueAsString(new DimmerModuleUpdateDto(-2L, "", 17, 300, -2L));
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .put("/rooms/-1/groups/-2/dimmermodules/-2")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    public void givenNonExistingDimmerModule_whenUpdateWithValidData_thenReturn404() throws Exception {
+        String json = objectMapper.writeValueAsString(new DimmerModuleUpdateDto(-99L, "TestDimmer", 16, 100, -2L));
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .put("/rooms/-1/groups/-2/dimmermodules/-99")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isNotFound());
     }
 }
