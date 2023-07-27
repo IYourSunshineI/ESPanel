@@ -35,6 +35,7 @@ public class KnobModuleMapperImpl implements KnobModuleMapper {
         Long id = knobModule.getId();
         String title = knobModule.getTitle();
         Integer pin_number = knobModule.getPinNumber();
+        Long group_id = knobModule.getGroup().getId();
 
         String color = null;
         Integer brightness = null;
@@ -45,6 +46,6 @@ public class KnobModuleMapperImpl implements KnobModuleMapper {
             brightness = ((DimmerModule) knobModule).getBrightness();
         }
 
-        return new KnobModuleDetailDto( id, title, pin_number, color, brightness );
+        return new KnobModuleDetailDto( id, title, pin_number, color, brightness, group_id );
     }
 }

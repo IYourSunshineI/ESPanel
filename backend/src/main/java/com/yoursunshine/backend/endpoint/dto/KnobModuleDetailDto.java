@@ -7,6 +7,7 @@ public record KnobModuleDetailDto(
         String title,
         Integer pinNumber,
         String color,
-        Integer brightness
+        Integer brightness,
+        Long group_id
 ) {
 }
