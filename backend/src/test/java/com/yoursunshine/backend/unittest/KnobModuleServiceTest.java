@@ -34,10 +34,15 @@ public class KnobModuleServiceTest {
     }
 
     @Test
+    public void givenExistingModules_whenGetAll_thenReturnAllModules() {
+        assertEquals(2, knobModuleService.getAll(-1L).size());
+    }
+
+    @Test
     public void givenExistingModule_whenDelete_thenDelete() {
-        int sizeBefore = knobModuleService.getAll().size();
+        int sizeBefore = knobModuleService.getAll(-1L).size();
         knobModuleService.delete(-1L);
-        int sizeAfter = knobModuleService.getAll().size();
+        int sizeAfter = knobModuleService.getAll(-1L).size();
         assertEquals(sizeBefore - 1, sizeAfter);
     }
 

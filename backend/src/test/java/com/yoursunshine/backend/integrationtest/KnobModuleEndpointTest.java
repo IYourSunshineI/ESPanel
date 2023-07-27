@@ -2,6 +2,7 @@ package com.yoursunshine.backend.integrationtest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yoursunshine.backend.datagenerator.DataGeneratorBean;
+import com.yoursunshine.backend.endpoint.dto.KnobModuleDetailDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.sql.SQLException;
 
+import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ActiveProfiles({"test", "datagen"})
@@ -41,6 +44,21 @@ public class KnobModuleEndpointTest {
     @AfterEach
     public void afterEach() throws SQLException {
         generatorBean.deleteData();
+    }
+
+    @Test
+    public void givenExistingModules_whenGetAll_thenReturnAllGroupsAnd200() throws Exception {
+        byte[] body = mockMvc.perform(MockMvcRequestBuilders
+                .get("/rooms/-1/groups/-1/knobmodules"))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse()
+                .getContentAsByteArray();
+
+        KnobModuleDetailDto[] modules = objectMapper.readValue(body, KnobModuleDetailDto[].class);
+
+        assertNotNull(modules);
+        assertEquals(2, modules.length);
     }
 
     @Test
