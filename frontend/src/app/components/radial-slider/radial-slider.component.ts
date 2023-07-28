@@ -1,4 +1,12 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild
+} from '@angular/core';
 
 @Component({
   selector: 'app-radial-slider',
@@ -7,12 +15,12 @@ import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewC
 })
 export class RadialSliderComponent implements AfterViewInit{
   @ViewChild('knob') knobDiv: ElementRef;
-  @Input() minValue: number;
-  @Input() maxValue: number;
   @Input() knobTitle: string;
-  @Output() value: EventEmitter<number> = new EventEmitter<number>();
+  @Input() currentValue: number;
+  @Output() valueChanged: EventEmitter<number> = new EventEmitter<number>();
 
-  currentValue: number = 0;
+  minValue: number = 0;
+  maxValue: number = 255;
   minRotation = 0;
   maxRotation = 360;
   rotationValue = 0;
@@ -21,6 +29,10 @@ export class RadialSliderComponent implements AfterViewInit{
 
   constructor(private window: Window) {
     this.windowRef = window;
+  }
+
+  ngOnInit() {
+    this.rotationValue = this.calcInitialRotation();
   }
 
   ngAfterViewInit() {
@@ -91,7 +103,16 @@ export class RadialSliderComponent implements AfterViewInit{
       this.maxValue);
 
     this.currentValue = Math.trunc(value);
-    this.value.emit(value);
+    this.valueChanged.emit(Math.trunc(value));
+  }
+
+  calcInitialRotation(): number {
+    const temp = this.map(this.currentValue,
+      this.minValue,
+      this.maxValue,
+      this.minRotation,
+      this.maxRotation);
+    return Math.trunc(temp);
   }
 
   map(x: number, in_min: number, in_max: number, out_min: number, out_max: number){

@@ -1,25 +1,23 @@
 <div class="main-container">
   <div class="header-container">
     <div class="name">
-      Name
+      {{ module.title }}
     </div>
-    <div class="button-group">
-      <button class="icon-button-module">
-        <div class="material-symbols-outlined">settings</div>
-      </button>
+    <div class="status">
+      <div class="material-symbols-sharp">circle</div>
     </div>
   </div>
   <div *ngIf="type === ModuleType.rgb" class="container">
-    <app-radial-slider [minValue]="0"
-                       [maxValue]="255"
-                       *ngFor="let i of ['R', 'G', 'B']"
+    <app-radial-slider *ngFor="let i of ['R', 'G', 'B']"
                        [knobTitle]="i"
+                       [currentValue]="getInitialRgbValue(i)"
+                        (valueChanged)="rgbValueChanged(i, $event)"
     ></app-radial-slider>
   </div>
   <div *ngIf="type === ModuleType.dimmer" class="container switch-container">
-    <app-radial-slider [minValue]="0"
-                       [maxValue]="255"
-                       [knobTitle]="'Dimmer'"
+    <app-radial-slider [knobTitle]="'Dimmer'"
+                       [currentValue]="getInitialDimmerValue()"
+                       (valueChanged)="dimmerValueChanged($event)"
     ></app-radial-slider>
   </div>
   <div *ngIf="type === ModuleType.switch" class="container switch-container">
