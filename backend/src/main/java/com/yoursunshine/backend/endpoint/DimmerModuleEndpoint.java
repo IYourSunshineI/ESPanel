@@ -16,7 +16,7 @@ import java.lang.invoke.MethodHandles;
 @RequestMapping(value = DimmerModuleEndpoint.BASE_PATH)
 public class DimmerModuleEndpoint {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    static final String BASE_PATH = "/rooms";
+    static final String BASE_PATH = "/groups";
     private final DimmerModuleService service;
 
     public DimmerModuleEndpoint(DimmerModuleService dimmerModuleService) {
@@ -28,12 +28,11 @@ public class DimmerModuleEndpoint {
      * @param dimmerModule the dimmer module to create
      * @return the created dimmer module
      */
-    @PostMapping("/{room_id}/groups/{group_id}/dimmermodules")
+    @PostMapping("/{group_id}/dimmermodules")
     @ResponseStatus(HttpStatus.CREATED)
-    public KnobModuleDetailDto create(@PathVariable("room_id") Long room_id,
-                                      @PathVariable("group_id") Long group_id,
+    public KnobModuleDetailDto create(@PathVariable("group_id") Long group_id,
                                       @Valid @RequestBody DimmerModuleCreateDto dimmerModule){
-        LOGGER.info("POST " + BASE_PATH + "/" + room_id + "/groups/" + group_id + "/dimmermodules" + "\nBody: {}", dimmerModule);
+        LOGGER.info("POST " + BASE_PATH + "/" + group_id + "/dimmermodules" + "\nBody: {}", dimmerModule);
         return service.create(group_id, dimmerModule);
     }
 
@@ -43,13 +42,12 @@ public class DimmerModuleEndpoint {
      * @param dimmerModule the dimmer module to update
      * @return the updated dimmer module
      */
-    @PutMapping("/{room_id}/groups/{group_id}/dimmermodules/{id}")
+    @PutMapping("/{group_id}/dimmermodules/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public KnobModuleDetailDto update(@PathVariable("room_id") Long room_id,
-                                      @PathVariable("group_id") Long group_id,
+    public KnobModuleDetailDto update(@PathVariable("group_id") Long group_id,
                                       @PathVariable("id") Long id,
                                       @Valid @RequestBody DimmerModuleUpdateDto dimmerModule){
-        LOGGER.info("PUT " + BASE_PATH + "/{}/groups/{}/dimmermodules/{}", room_id, group_id, id);
+        LOGGER.info("PUT " + BASE_PATH + "/{}/dimmermodules/{}", group_id, id);
         return service.update(id, dimmerModule);
     }
 }

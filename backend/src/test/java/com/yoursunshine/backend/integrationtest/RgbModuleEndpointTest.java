@@ -53,7 +53,7 @@ public class RgbModuleEndpointTest {
         String json = objectMapper.writeValueAsString(new RgbModuleCreateDto("TestRGB", 16));
 
         byte[] body = mockMvc.perform(MockMvcRequestBuilders
-                        .post("/rooms/-1/groups/-1/rgbmodules")
+                        .post("/groups/-1/rgbmodules")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isCreated())
@@ -78,7 +78,7 @@ public class RgbModuleEndpointTest {
         String json = objectMapper.writeValueAsString(new RgbModuleCreateDto("", 17));
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/rooms/-1/groups/-1/rgbmodules")
+                        .post("/groups/-1/rgbmodules")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isUnprocessableEntity());
@@ -89,7 +89,7 @@ public class RgbModuleEndpointTest {
         String json = objectMapper.writeValueAsString(new RgbModuleUpdateDto(-3L, "TestRGB", 16, "#FF00FF", -1L));
 
         byte[] body = mockMvc.perform(MockMvcRequestBuilders
-                        .put("/rooms/-1/groups/-1/rgbmodules/-3")
+                        .put("/groups/-1/rgbmodules/-3")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isOk())
@@ -114,7 +114,7 @@ public class RgbModuleEndpointTest {
         String json = objectMapper.writeValueAsString(new RgbModuleUpdateDto(-3L, "", 17, "#FF00FF", -1L));
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .put("/rooms/-1/groups/-1/rgbmodules/-3")
+                        .put("/groups/-1/rgbmodules/-3")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isUnprocessableEntity());
@@ -125,7 +125,7 @@ public class RgbModuleEndpointTest {
         String json = objectMapper.writeValueAsString(new RgbModuleUpdateDto(-99L, "TestRGB", 16, "#FF00FF", -1L));
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .put("/rooms/-1/groups/-1/rgbmodules/-99")
+                        .put("/groups/-1/rgbmodules/-99")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isNotFound());

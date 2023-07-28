@@ -16,7 +16,7 @@ import java.lang.invoke.MethodHandles;
 @RequestMapping(value = RgbModuleEndpoint.BASE_PATH)
 public class RgbModuleEndpoint {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    static final String BASE_PATH = "/rooms";
+    static final String BASE_PATH = "/groups";
     private final RgbModuleService service;
 
     public RgbModuleEndpoint(RgbModuleService rgbModuleService) {
@@ -28,12 +28,11 @@ public class RgbModuleEndpoint {
      * @param rgbModule the rgbModule to create
      * @return the created rgbModule
      */
-    @PostMapping("/{room_id}/groups/{group_id}/rgbmodules")
+    @PostMapping("/{group_id}/rgbmodules")
     @ResponseStatus(HttpStatus.CREATED)
-    public KnobModuleDetailDto create(@PathVariable("room_id") Long room_id,
-                                      @PathVariable("group_id") Long group_id,
+    public KnobModuleDetailDto create(@PathVariable("group_id") Long group_id,
                                       @Valid @RequestBody RgbModuleCreateDto rgbModule){
-        LOGGER.info("POST " + BASE_PATH + "/" + room_id + "/groups/" + group_id + "/rgbmodules" + "\nBody: {}", rgbModule);
+        LOGGER.info("POST " + BASE_PATH + "/" + group_id + "/rgbmodules" + "\nBody: {}", rgbModule);
         return service.create(group_id, rgbModule);
     }
 
@@ -43,13 +42,12 @@ public class RgbModuleEndpoint {
      * @param rgbModule the rgbModule to update
      * @return the updated rgbModule
      */
-    @PutMapping("/{room_id}/groups/{group_id}/rgbmodules/{id}")
+    @PutMapping("/{group_id}/rgbmodules/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public KnobModuleDetailDto update(@PathVariable("room_id") Long room_id,
-                                      @PathVariable("group_id") Long group_id,
+    public KnobModuleDetailDto update(@PathVariable("group_id") Long group_id,
                                       @PathVariable("id") Long id,
                                       @Valid @RequestBody RgbModuleUpdateDto rgbModule){
-        LOGGER.info("PUT " + BASE_PATH + "/{}/groups/{}/rgbmodules/{}", room_id, group_id, id);
+        LOGGER.info("PUT " + BASE_PATH + "/{}/rgbmodules/{}", group_id, id);
         return service.update(id, rgbModule);
     }
 }

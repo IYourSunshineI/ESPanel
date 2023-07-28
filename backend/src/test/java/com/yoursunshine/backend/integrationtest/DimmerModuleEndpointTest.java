@@ -53,7 +53,7 @@ public class DimmerModuleEndpointTest {
         String json = objectMapper.writeValueAsString(new DimmerModuleCreateDto("TestDimmer", 16));
 
         byte[] body = mockMvc.perform(MockMvcRequestBuilders
-                        .post("/rooms/-1/groups/-1/dimmermodules")
+                        .post("/groups/-1/dimmermodules")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isCreated())
@@ -77,7 +77,7 @@ public class DimmerModuleEndpointTest {
         String json = objectMapper.writeValueAsString(new DimmerModuleCreateDto("", 17));
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/rooms/-1/groups/-1/dimmermodules")
+                        .post("/groups/-1/dimmermodules")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isUnprocessableEntity());
@@ -88,7 +88,7 @@ public class DimmerModuleEndpointTest {
         String json = objectMapper.writeValueAsString(new DimmerModuleUpdateDto(-2L, "TestDimmer", 16, 100, -2L));
 
         byte[] body = mockMvc.perform(MockMvcRequestBuilders
-                        .put("/rooms/-1/groups/-2/dimmermodules/-2")
+                        .put("/groups/-2/dimmermodules/-2")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isOk())
@@ -112,7 +112,7 @@ public class DimmerModuleEndpointTest {
         String json = objectMapper.writeValueAsString(new DimmerModuleUpdateDto(-2L, "", 17, 300, -2L));
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .put("/rooms/-1/groups/-2/dimmermodules/-2")
+                        .put("/groups/-2/dimmermodules/-2")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isUnprocessableEntity());
@@ -123,7 +123,7 @@ public class DimmerModuleEndpointTest {
         String json = objectMapper.writeValueAsString(new DimmerModuleUpdateDto(-99L, "TestDimmer", 16, 100, -2L));
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .put("/rooms/-1/groups/-2/dimmermodules/-99")
+                        .put("/groups/-2/dimmermodules/-99")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isNotFound());

@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping(value = KnobModuleEndpoint.BASE_PATH)
 public class KnobModuleEndpoint {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    static final String BASE_PATH = "/rooms";
+    static final String BASE_PATH = "/groups";
     private final KnobModuleService service;
 
     public KnobModuleEndpoint(KnobModuleService knobModuleService) {
@@ -25,11 +25,10 @@ public class KnobModuleEndpoint {
      * Get all knob modules from a group
      * @return all knob modules
      */
-    @GetMapping("/{room_id}/groups/{group_id}/knobmodules")
+    @GetMapping("/{group_id}/knobmodules")
     @ResponseStatus(HttpStatus.OK)
-    public List<KnobModuleDetailDto> getAll(@PathVariable("room_id") Long room_id,
-                                            @PathVariable("group_id") Long group_id){
-        LOGGER.info("GET " + BASE_PATH + "/{}/groups/{}/knobmodules", room_id, group_id);
+    public List<KnobModuleDetailDto> getAll(@PathVariable("group_id") Long group_id){
+        LOGGER.info("GET " + BASE_PATH + "/{}/knobmodules", group_id);
         return service.getAll(group_id);
     }
 
@@ -37,12 +36,11 @@ public class KnobModuleEndpoint {
      * Delete a knob module
      * @param id the id of the knob module to delete
      */
-    @DeleteMapping("/{room_id}/groups/{group_id}/knobmodules/{id}")
+    @DeleteMapping("/{group_id}/knobmodules/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable("room_id") Long room_id,
-                       @PathVariable("group_id") Long group_id,
+    public void delete(@PathVariable("group_id") Long group_id,
                        @PathVariable("id") Long id){
-        LOGGER.info("DELETE " + BASE_PATH + "/{}/groups/{}/knobmodules/{}", room_id, group_id, id);
+        LOGGER.info("DELETE " + BASE_PATH + "/{}/knobmodules/{}", group_id, id);
         service.delete(id);
     }
 

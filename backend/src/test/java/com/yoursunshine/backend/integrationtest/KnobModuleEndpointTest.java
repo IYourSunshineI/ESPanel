@@ -49,7 +49,7 @@ public class KnobModuleEndpointTest {
     @Test
     public void givenExistingModules_whenGetAll_thenReturnAllGroupsAnd200() throws Exception {
         byte[] body = mockMvc.perform(MockMvcRequestBuilders
-                .get("/rooms/-1/groups/-1/knobmodules"))
+                .get("/groups/-1/knobmodules"))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
@@ -64,14 +64,14 @@ public class KnobModuleEndpointTest {
     @Test
     public void givenExistingModule_whenDelete_thenDeleteAndReturn204() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-                .delete("/rooms/-1/groups/-1/knobmodules/-1"))
+                .delete("/groups/-1/knobmodules/-1"))
                 .andExpect(status().isNoContent());
     }
 
     @Test
     public void givenNonExistingModule_whenDelete_thenReturn404() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-                .delete("/rooms/-1/groups/-1/knobmodules/-99"))
+                .delete("/groups/-1/knobmodules/-99"))
                 .andExpect(status().isNotFound());
     }
 }
