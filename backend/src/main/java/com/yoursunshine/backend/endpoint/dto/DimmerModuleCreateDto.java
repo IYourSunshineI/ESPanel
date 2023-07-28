@@ -10,11 +10,6 @@ public record DimmerModuleCreateDto(
         @NotNull(message = "No pin number given")
         @Min(value = 0, message = "Pin Number must be between 0 and 16")
         @Max(value = 16, message = "Pin Number must be between 0 and 16")
-        Integer pinNumber,
-
-        @NotNull(message = "No brightness given")
-        @Min(value = 0, message = "Brightness must be between 0 and 255")
-        @Max(value = 255, message = "Brightness must be between 0 and 255")
-        Integer brightness
+        Integer pinNumber
 ) {
 }

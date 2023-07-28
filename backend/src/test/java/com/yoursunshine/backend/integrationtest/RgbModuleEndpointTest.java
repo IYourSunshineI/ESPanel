@@ -50,7 +50,7 @@ public class RgbModuleEndpointTest {
 
     @Test
     public void givenNothing_whenCreateWithValidData_thenCreateAndReturnEntryAnd201() throws Exception {
-        String json = objectMapper.writeValueAsString(new RgbModuleCreateDto("TestRGB", 16, "#FFFFFF"));
+        String json = objectMapper.writeValueAsString(new RgbModuleCreateDto("TestRGB", 16));
 
         byte[] body = mockMvc.perform(MockMvcRequestBuilders
                         .post("/rooms/-1/groups/-1/rgbmodules")
@@ -68,14 +68,14 @@ public class RgbModuleEndpointTest {
                 () -> assertNotNull(module.id()),
                 () -> assertEquals("TestRGB", module.title()),
                 () -> assertEquals(16, module.pinNumber()),
-                () -> assertEquals("#FFFFFF", module.color()),
+                () -> assertEquals("#000000", module.color()),
                 () -> assertEquals(-1L, module.group_id())
         );
     }
 
     @Test
     public void givenNothing_whenCreateWithInvalidData_thenReturn422() throws Exception {
-        String json = objectMapper.writeValueAsString(new RgbModuleCreateDto("", 17, "#FFFFFF"));
+        String json = objectMapper.writeValueAsString(new RgbModuleCreateDto("", 17));
 
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/rooms/-1/groups/-1/rgbmodules")

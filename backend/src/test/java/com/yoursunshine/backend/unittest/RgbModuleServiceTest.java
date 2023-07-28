@@ -37,7 +37,7 @@ public class RgbModuleServiceTest {
 
     @Test
     public void givenNothing_whenCreateWithValidData_thenCreateAndReturnEntry() {
-        KnobModuleDetailDto module = rgbModuleService.create(-1L, new RgbModuleCreateDto("TestModule", 16, "#FFFFFF"));
+        KnobModuleDetailDto module = rgbModuleService.create(-1L, new RgbModuleCreateDto("TestModule", 16));
         assertNotNull(module);
         assertAll(
                 () -> assertNotNull(module.id()),
@@ -46,7 +46,7 @@ public class RgbModuleServiceTest {
                 () -> assertNotNull(module.pinNumber()),
                 () -> assertEquals(16, module.pinNumber()),
                 () -> assertNotNull(module.color()),
-                () -> assertEquals("#FFFFFF", module.color()),
+                () -> assertEquals("#000000", module.color()),
                 () -> assertNotNull(module.group_id()),
                 () -> assertEquals(-1L, module.group_id())
         );

@@ -15,6 +15,7 @@ public interface DimmerModuleMapper {
      * @param dimmerModule the dimmer module to map
      * @return the mapped dimmer module
      */
+    @Mapping(expression = "java(0)", target = "brightness")
     DimmerModule createDtoToEntity(DimmerModuleCreateDto dimmerModule);
 
     /**

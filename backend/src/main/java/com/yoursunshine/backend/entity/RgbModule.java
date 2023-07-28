@@ -12,5 +12,6 @@ import java.awt.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RgbModule extends KnobModule{
+    @Column(nullable = false)
     private String color;
 }

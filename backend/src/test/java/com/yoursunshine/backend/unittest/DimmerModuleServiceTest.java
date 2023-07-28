@@ -38,7 +38,7 @@ public class DimmerModuleServiceTest {
 
     @Test
     public void givenNothing_whenCreateWithValidData_thenCreateAndReturnEntry() {
-        KnobModuleDetailDto module = dimmerModuleService.create(-1L, new DimmerModuleCreateDto("TestModule", 16, 0));
+        KnobModuleDetailDto module = dimmerModuleService.create(-1L, new DimmerModuleCreateDto("TestModule", 16));
         assertNotNull(module);
         assertAll(
                 () -> assertNotNull(module.id()),

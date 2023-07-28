@@ -10,10 +10,6 @@ public record RgbModuleCreateDto(
         @NotNull(message = "No pin number given")
         @Min(value = 0, message = "Pin Number must be between 0 and 16")
         @Max(value = 16, message = "Pin Number must be between 0 and 16")
-        Integer pinNumber,
-
-        @NotNull(message = "No color given")
-        @Pattern(regexp = "^#([A-Fa-f0-9]{6})$", message = "Invalid color")
-        String color
+        Integer pinNumber
 ) {
 }

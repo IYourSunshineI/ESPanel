@@ -14,6 +14,7 @@ public interface RgbModuleMapper {
      * @param rgbModule the rgb module to map
      * @return the mapped rgb module
      */
+    @Mapping(expression = "java(\"#000000\")", target = "color")
     RgbModule createDtoToEntity(RgbModuleCreateDto rgbModule);
 
     /**

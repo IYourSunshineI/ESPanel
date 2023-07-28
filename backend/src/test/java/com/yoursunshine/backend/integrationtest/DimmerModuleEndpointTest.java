@@ -50,7 +50,7 @@ public class DimmerModuleEndpointTest {
 
     @Test
     public void givenNothing_whenCreateWithValidData_thenCreateAndReturnEntryAnd201() throws Exception {
-        String json = objectMapper.writeValueAsString(new DimmerModuleCreateDto("TestDimmer", 16, 100));
+        String json = objectMapper.writeValueAsString(new DimmerModuleCreateDto("TestDimmer", 16));
 
         byte[] body = mockMvc.perform(MockMvcRequestBuilders
                         .post("/rooms/-1/groups/-1/dimmermodules")
@@ -68,13 +68,13 @@ public class DimmerModuleEndpointTest {
                 () -> assertNotNull(module.id()),
                 () -> assertEquals("TestDimmer", module.title()),
                 () -> assertEquals(16, module.pinNumber()),
-                () -> assertEquals(100, module.brightness())
+                () -> assertEquals(0, module.brightness())
         );
     }
 
     @Test
     public void givenNothing_whenCreateWithInvalidData_thenReturn422() throws Exception {
-        String json = objectMapper.writeValueAsString(new DimmerModuleCreateDto("", 17, 300));
+        String json = objectMapper.writeValueAsString(new DimmerModuleCreateDto("", 17));
 
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/rooms/-1/groups/-1/dimmermodules")

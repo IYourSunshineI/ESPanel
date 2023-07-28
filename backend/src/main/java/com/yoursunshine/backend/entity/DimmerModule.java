@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DimmerModule extends KnobModule {
+    @Column(nullable = false)
     private Integer brightness;
 }
