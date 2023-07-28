@@ -1,12 +1,10 @@
 <div class="main-container">
   <div class="header-container">
     <div class="name">
-      Name
+      {{ module.title }}
     </div>
-    <div class="button-group">
-      <button class="icon-button-module">
-        <div class="material-symbols-outlined">settings</div>
-      </button>
+    <div class="status">
+      <div class="material-symbols-sharp">circle</div>
     </div>
   </div>
   <div *ngIf="type === ModuleType.rgb" class="container">

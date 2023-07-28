@@ -15,10 +15,12 @@
     </div>
   </div>
   <div class="modules-container">
-    <app-module [type]="ModuleType.rgb"
-    ></app-module>
-    <app-module [type]="ModuleType.dimmer"
-    ></app-module>
+    <div *ngFor="let m of this.modules" >
+      <app-module *ngIf="isRgbModule(m)" [module]="m" [type]="ModuleType.rgb"
+      ></app-module>
+      <app-module *ngIf="!isRgbModule(m)" [module]="m" [type]="ModuleType.dimmer"
+      ></app-module>
+    </div>
 
     <div class="add-container" (click)="temp($event)">
       <div class="material-symbols-outlined">
