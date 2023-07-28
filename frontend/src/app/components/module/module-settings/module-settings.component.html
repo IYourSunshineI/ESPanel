@@ -1,0 +1,22 @@
+<div class="content">
+  <div class="main-container">
+    <input type="text" class="input-text" placeholder="eg. Lamp"
+           [(ngModel)]="module.title"
+           (input)="errorTitle = false">
+    <div *ngIf="!errorTitle" class="desc">Title</div>
+    <div *ngIf="errorTitle" class="err-msg"> {{ errorMessageTitle }}</div>
+
+    <input type="number" class="input-text" placeholder="xx" min="0" max="16"
+           [(ngModel)]="module.pinNumber"
+           (input)="errorPinNumber = false">
+    <div *ngIf="!errorPinNumber" class="desc">Pin Number</div>
+    <div *ngIf="errorPinNumber" class="err-msg"> {{ errorMessagePinNumber }}</div>
+  </div>
+  <div class="button-container">
+    <div class="button-delete" (click)="delete()">Delete</div>
+    <div class="right">
+      <div class="button-cancel" (click)="cancel()">Close</div>
+      <div class="button-save" (click)="save()">Save</div>
+    </div>
+  </div>
+</div>

@@ -38,4 +38,14 @@ export class KnobModuleService {
     console.log('get all modules');
     return this.http.get<KnobModule[]>(this.moduleBaseUri + '/' + group_id + "/knobmodules");
   }
+
+  /**
+   * Updates the module
+   * @param group_id the group id
+   * @param module_id the module id
+   */
+  delete(group_id: number, module_id: number): Observable<any> {
+    console.log('delete module: ', module_id);
+    return this.http.delete<any>(this.moduleBaseUri + '/' + group_id + "/knobmodules" + '/' + module_id);
+  }
 }

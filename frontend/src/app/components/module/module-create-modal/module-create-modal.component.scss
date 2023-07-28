@@ -23,7 +23,7 @@
     justify-content: space-around;
     padding: .5rem;
     cursor: pointer;
-    border: 1px solid map-get($custom-colors, 'dark-default');
+    border: 3px solid map-get($custom-colors, 'dark-default');
 
     &:first-of-type{
       border-top-left-radius: 10px;

@@ -3,13 +3,11 @@
     <div class="title">Settings</div>
     <div class="clickable"
          [ngClass]="{'selected': selectedIndex === 0}"
-         (click)="selectedIndex = 0"
-    >
+         (click)="selectedIndex = 0">
       Room
     </div>
     <div class="clickable" (click)="showGroups = !showGroups; selectedIndex = (groups.length === 0 || !showGroups ? 0 : 2);"
-         [ngClass]="{'grayed-out': this.groups.length === 0}"
-    >
+         [ngClass]="{'grayed-out': this.groups.length === 0}">
       Groups
       <span class="material-symbols-outlined"
             *ngIf="showGroups && this.groups.length > 0"
@@ -22,24 +20,50 @@
       <div class="clickable foldout"
            *ngFor="let g of this.groups"
            [ngClass]="{'selected': g === this.groups[selectedIndex - 2]}"
-           (click)="selectedIndex = this.groups.indexOf(g) + 2"
-      >
+           (click)="selectedIndex = this.groups.indexOf(g) + 2">
         <div class="group-title">
           {{g.title}}
         </div>
       </div>
     </div>
+
+    <div class="clickable" (click)="showModules = !showModules; selectedIndex = (modules.length === 0 || !showModules ? selectedIndex : groups.length + 3);"
+         [ngClass]="{'grayed-out': modules.length === 0}">
+      Modules
+      <span class="material-symbols-outlined"
+            *ngIf="showModules && this.modules.length > 0"
+      >expand_less</span>
+      <span class="material-symbols-outlined"
+            *ngIf="!showModules && this.modules.length > 0"
+      >expand_more</span>
     </div>
+    <div *ngIf="showModules">
+      <div class="clickable foldout"
+           *ngFor="let m of modules"
+           [ngClass]="{'selected': m === modules[selectedIndex - groups.length - 3]}"
+           (click)="selectedIndex = modules.indexOf(m) + groups.length + 3">
+        <div class="group-title">
+          {{m.title}}
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="right">
     <app-room-settings *ngIf="selectedIndex === 0"
                        [room]="this.updatedRoom"
                        (updatedRoom)="updateRoom($event)"
                        (dismissReason)="this.activeModal.dismiss(dismissReason === '' ? $event : dismissReason)"
     ></app-room-settings>
-    <app-group-settings *ngIf="selectedIndex > 1"
+    <app-group-settings *ngIf="selectedIndex > 1 && selectedIndex < groups.length + 2"
                         [group]="this.groups[selectedIndex - 2]"
                         (updatedGroup)="updateGroup($event)"
                         (dismissReason)="this.activeModal.dismiss(dismissReason === '' ? $event : dismissReason)"
     ></app-group-settings>
+    <app-module-settings *ngIf="selectedIndex >= groups.length + 2"
+                         [module]="this.modules[selectedIndex - groups.length - 3]"
+                         [type]="getModulesType(this.modules[selectedIndex - groups.length - 3])"
+                         (updatedModule)="updateModule($event)"
+                         (dismissReason)="this.activeModal.dismiss(dismissReason === '' ? $event : dismissReason)"
+    ></app-module-settings>
   </div>
 </div>

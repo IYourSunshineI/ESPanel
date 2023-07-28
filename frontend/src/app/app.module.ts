@@ -15,6 +15,7 @@ import { SettingsModalComponent } from './components/settings-modal/settings-mod
 import { RoomSettingsComponent } from './components/room/room-settings/room-settings.component';
 import { GroupSettingsComponent } from './components/group/group-settings/group-settings.component';
 import { ModuleCreateModalComponent } from './components/module/module-create-modal/module-create-modal.component';
+import { ModuleSettingsComponent } from './components/module/module-settings/module-settings.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ModuleCreateModalComponent } from './components/module/module-create-mo
     RoomSettingsComponent,
     GroupSettingsComponent,
     ModuleCreateModalComponent,
+    ModuleSettingsComponent,
   ],
   imports: [
     BrowserModule,
