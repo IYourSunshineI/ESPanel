@@ -40,7 +40,7 @@ export class ModuleCreateModalComponent {
     createModule() {
       if(!this.room_id || !this.group_id) return;
 
-      this.service.create(this.room_id, this.group_id, this.knobModule, this.type).subscribe( {
+      this.service.create(this.group_id, this.knobModule, this.type).subscribe( {
         next: data => {
           console.log('created module: ', data);
           this.activeModal.dismiss('created');

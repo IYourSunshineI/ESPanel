@@ -62,7 +62,7 @@ export class GroupComponent implements AfterViewInit {
   loadModules() {
     if(!this.group.id || !this.group.room_id) return;
 
-    this.knobService.getAll(this.group.room_id, this.group.id).subscribe({
+    this.knobService.getAll(this.group.id).subscribe({
       next: data => {
         console.log('load modules', data);
         this.modules = data;

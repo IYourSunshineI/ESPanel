@@ -7,7 +7,7 @@ import {Globals} from "../global/globals";
 })
 export class RgbModuleService {
 
-  private rgbModuleBaseUri: string = this.globals.backendUri + '/rooms';
+  private rgbModuleBaseUri: string = this.globals.backendUri + '/groups';
 
   constructor(
     private http: HttpClient,
