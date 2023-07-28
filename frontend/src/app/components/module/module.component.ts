@@ -28,27 +28,40 @@ export class ModuleComponent implements OnInit{
   ngOnInit() {
     if(this.type === ModuleType.dimmer) {
       this.filterSubject = new Subject<number>();
-      this.filterSubject.pipe(debounceTime(1000)).subscribe(n => {
+      this.filterSubject.pipe(debounceTime(500)).subscribe(n => {
         console.log(n);
         (this.module as DimmerModule).brightness = n;
-        // TODO: Send brightness to server
+
         if(!this.module.group_id) return;
         this.dimmerModuleService.update(this.module.group_id, this.module as DimmerModule).subscribe({
           next: data => {
             this.module = data;
             console.log('updated dimmer: ', data);
+          },
+          error: e=> {
+            console.error('error updating dimmer: ', e);
           }
         });
       });
     } else {
       this.filterSubject = new Subject<[string, number]>();
-      this.filterSubject.pipe(debounceTime(1000)).subscribe(n => {
+      this.filterSubject.pipe(debounceTime(500)).subscribe(n => {
         // @ts-ignore
         this.rgbValue[n[0]] = n[1];
         console.log(this.rgbValue);
         if(!this.rgbValue) return;
         (this.module as RgbModule).color = this.rgbToHex(this.rgbValue['R'], this.rgbValue['G'], this.rgbValue['B']);
-        // TODO: Send color to server
+
+        if(!this.module.group_id) return;
+        this.rgbModuleService.update(this.module.group_id, this.module as RgbModule).subscribe({
+          next: data => {
+            this.module = data;
+            console.log('updated rgb: ', data);
+          },
+          error: e=> {
+            console.error('error updating rgb: ', e);
+          }
+        });
       });
     }
   }
