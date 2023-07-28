@@ -1,0 +1,44 @@
+<div class="modal-body">
+  <div class="title">New Module</div>
+
+  <div class="radio-button-group">
+    <input name="module_type" type="radio" id="dimmer-radio" class="radio-button"
+           value="dimmer" (click)="radioChangeHandler($event)"
+           checked>
+    <label for="dimmer-radio" class="radio-label">Dimmer</label>
+    <input name="module_type" type="radio" id="rgb-radio" class="radio-button"
+           value="rgb" (click)="radioChangeHandler($event)">
+    <label for="rgb-radio" class="radio-label">RGB</label>
+  </div>
+
+  <div class="input-group">
+    <div>
+      <input type="text" placeholder="eg. Color / Brightness"
+             [(ngModel)]="knobModule.title"
+             [ngClass]="{'input-text': true,
+                       'warn': errorTitle}"
+             (input)="errorTitle = false">
+      <div class="err-msg" *ngIf="errorTitle">{{ errorMessageTitle }}</div>
+      <div class="desc" *ngIf="!errorTitle">Title</div>
+    </div>
+
+    <div>
+      <input type="number" placeholder="xx" min="0" max="16"
+             [(ngModel)]="knobModule.pinNumber"
+             [ngClass]="{'input-text': true,
+                       'warn': errorPinNumber}"
+             (input)="errorPinNumber = false">
+      <div class="err-msg" *ngIf="errorPinNumber">{{ errorMessagePinNumber }}</div>
+      <div class="desc" *ngIf="!errorPinNumber">Pin Number</div>
+    </div>
+  </div>
+
+  <div class="button-group">
+    <button class="button-cancel" (click)="this.activeModal.dismiss('cancel')">
+      Cancel
+    </button>
+    <button class="button-save" (click)="createModule()">
+      Save
+    </button>
+  </div>
+</div>

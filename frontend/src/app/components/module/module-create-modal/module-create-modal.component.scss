@@ -1,0 +1,50 @@
+@import "src/styles.scss";
+
+.radio-button-group {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+
+  > * {
+    flex: 0 0 50%;
+  }
+
+  .radio-button {
+    display: none;
+
+    &:checked + .radio-label {
+      background-color: map-get($custom-colors, 'dark-default');
+      color: map-get($custom-colors, 'background');
+    }
+  }
+
+  .radio-label {
+    display: flex;
+    justify-content: space-around;
+    padding: .5rem;
+    cursor: pointer;
+    border: 1px solid map-get($custom-colors, 'dark-default');
+
+    &:first-of-type{
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    &:last-of-type{
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+  }
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}

@@ -3,7 +3,9 @@ import {ModuleType} from "../../types/module-type";
 import {Group} from "../../dtos/group";
 import {GroupService} from "../../services/group.service";
 import {KnobModuleService} from "../../services/knob-module.service";
-import {KnobModule, RgbModule, DimmerModule} from "../../dtos/knobModule";
+import {KnobModule, RgbModule} from "../../dtos/knobModule";
+import {ModuleCreateModalComponent} from "../module/module-create-modal/module-create-modal.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-group',
@@ -16,19 +18,31 @@ export class GroupComponent implements AfterViewInit {
 
   modules: KnobModule[] = [];
 
-  temp(e: any){
-    console.log('click');
-  }
-
   protected readonly ModuleType = ModuleType;
 
   constructor(
+    private modalService: NgbModal,
     private groupService: GroupService,
     private knobService: KnobModuleService,
   ) { }
 
   ngAfterViewInit(): void {
     this.loadModules();
+  }
+
+  async openCreateModuleModal() {
+    const modalRef = this.modalService.open(ModuleCreateModalComponent,
+      {centered: true});
+    modalRef.componentInstance.room_id = this.group.room_id;
+    modalRef.componentInstance.group_id = this.group.id;
+    try {
+      await modalRef.result;
+    } catch (dismissReason) {
+      console.log('dismissed reason: ', dismissReason);
+      if(dismissReason === 'created') {
+        this.loadModules();
+      }
+    }
   }
 
   changeState(state: boolean) {
@@ -52,8 +66,6 @@ export class GroupComponent implements AfterViewInit {
       next: data => {
         console.log('load modules', data);
         this.modules = data;
-        this.modules.forEach(m => {
-        })
       },
       error: e => {
         console.error('error on load modules', e);
