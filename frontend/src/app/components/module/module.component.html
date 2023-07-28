@@ -10,7 +10,7 @@
   <div *ngIf="type === ModuleType.rgb" class="container">
     <app-radial-slider *ngFor="let i of ['R', 'G', 'B']"
                        [knobTitle]="i"
-                       [currentValue]=0
+                       [currentValue]="getInitialRgbValue(i)"
     ></app-radial-slider>
   </div>
   <div *ngIf="type === ModuleType.dimmer" class="container switch-container">
