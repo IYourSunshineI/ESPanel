@@ -33,7 +33,9 @@ export class SidebarComponent implements OnInit{
       await modalRef.result;
     } catch (dismissReason) {
       console.log('dismissed reason: ', dismissReason);
-      this.loadRooms();
+      if(dismissReason === 'created') {
+        this.loadRooms();
+      }
     }
   }
 
