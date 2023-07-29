@@ -6,6 +6,7 @@ import {KnobModuleService} from "../../services/knob-module.service";
 import {KnobModule, RgbModule} from "../../dtos/knobModule";
 import {ModuleCreateModalComponent} from "../module/module-create-modal/module-create-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {EspService} from "../../services/esp.service";
 
 @Component({
   selector: 'app-group',
@@ -21,6 +22,7 @@ export class GroupComponent implements AfterViewInit {
   protected readonly ModuleType = ModuleType;
 
   constructor(
+    private espService: EspService,
     private modalService: NgbModal,
     private groupService: GroupService,
     private knobService: KnobModuleService,
@@ -55,6 +57,16 @@ export class GroupComponent implements AfterViewInit {
       },
       error: e => {
         console.error('error on update group', e);
+      }
+    });
+
+    //temp
+    this.espService.setState(this.group.ip_address, state).subscribe({
+      next: data => {
+        console.log('update led');
+      },
+      error: e => {
+        console.error('error on update led', e);
       }
     });
   }

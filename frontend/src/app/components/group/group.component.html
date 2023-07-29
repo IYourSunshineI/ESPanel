@@ -16,9 +16,9 @@
   </div>
   <div class="modules-container">
     <div *ngFor="let m of this.modules" >
-      <app-module *ngIf="isRgbModule(m)" [module]="m" [type]="ModuleType.rgb"
+      <app-module *ngIf="isRgbModule(m)" [module]="m" [type]="ModuleType.rgb" [ipAdress]="group.ip_address"
       ></app-module>
-      <app-module *ngIf="!isRgbModule(m)" [module]="m" [type]="ModuleType.dimmer"
+      <app-module *ngIf="!isRgbModule(m)" [module]="m" [type]="ModuleType.dimmer" [ipAdress]="group.ip_address"
       ></app-module>
     </div>
 
