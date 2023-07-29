@@ -18,7 +18,7 @@ export class EspService {
    */
   setState(ipAdress: string, active: boolean): Observable<void> {
     console.log('update group status: ' + active + ' for ip: ' + ipAdress);
-    return this.http.put<void>('http://' + ipAdress + ':8081/led', active);
+    return this.http.put<void>('http://' + ipAdress + ':8081/state', active);
   }
 
   /**
