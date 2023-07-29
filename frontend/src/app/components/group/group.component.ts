@@ -62,7 +62,7 @@ export class GroupComponent implements AfterViewInit {
 
     //temp
     this.espService.setState(this.group.ip_address, state).subscribe({
-      next: data => {
+      next: () => {
         console.log('update led');
       },
       error: e => {

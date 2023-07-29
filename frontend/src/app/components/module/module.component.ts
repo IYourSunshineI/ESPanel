@@ -46,7 +46,7 @@ export class ModuleComponent implements OnInit{
         });
 
         this.espService.setBrightness(this.ipAdress, this.module.pinNumber, (this.module as DimmerModule).brightness).subscribe({
-          next: data => {
+          next: () => {
             console.log('updated dimmer');
           },
           error: e=> {
@@ -75,7 +75,7 @@ export class ModuleComponent implements OnInit{
         });
 
         this.espService.setColor(this.ipAdress, this.module.pinNumber, (this.module as RgbModule).color).subscribe({
-          next: data => {
+          next: () => {
             console.log('updated rgb');
           },
           error: e=> {
