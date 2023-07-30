@@ -1,9 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ModuleType} from "../../types/module-type";
 import {KnobModule, DimmerModule, RgbModule} from "../../dtos/knobModule";
-import {debounceTime, fromEvent, Subject} from "rxjs";
+import {debounceTime, Subject} from "rxjs";
 import {DimmerModuleService} from "../../services/dimmer-module.service";
 import {RgbModuleService} from "../../services/rgb-module.service";
+import {EspService} from "../../services/esp.service";
 
 @Component({
   selector: 'app-module',
@@ -13,6 +14,7 @@ import {RgbModuleService} from "../../services/rgb-module.service";
 export class ModuleComponent implements OnInit{
   @Input() module: KnobModule;
   @Input() type: ModuleType;
+  @Input() ipAdress: string;
   protected readonly ModuleType = ModuleType;
 
   rgbValue: { R: number; B: number; G: number } | null = null;
@@ -22,9 +24,9 @@ export class ModuleComponent implements OnInit{
   constructor(
     private dimmerModuleService: DimmerModuleService,
     private rgbModuleService: RgbModuleService,
+    private espService: EspService,
   ) { }
 
-  //TODO: Add lower debounce time for esp communication
   ngOnInit() {
     if(this.type === ModuleType.dimmer) {
       this.filterSubject = new Subject<number>();
@@ -37,6 +39,15 @@ export class ModuleComponent implements OnInit{
           next: data => {
             this.module = data;
             console.log('updated dimmer: ', data);
+          },
+          error: e=> {
+            console.error('error updating dimmer: ', e);
+          }
+        });
+
+        this.espService.setBrightness(this.ipAdress, this.module.pinNumber, (this.module as DimmerModule).brightness).subscribe({
+          next: () => {
+            console.log('updated dimmer');
           },
           error: e=> {
             console.error('error updating dimmer: ', e);
@@ -57,6 +68,15 @@ export class ModuleComponent implements OnInit{
           next: data => {
             this.module = data;
             console.log('updated rgb: ', data);
+          },
+          error: e=> {
+            console.error('error updating rgb: ', e);
+          }
+        });
+
+        this.espService.setColor(this.ipAdress, this.module.pinNumber, (this.module as RgbModule).color).subscribe({
+          next: () => {
+            console.log('updated rgb');
           },
           error: e=> {
             console.error('error updating rgb: ', e);

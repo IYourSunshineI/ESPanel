@@ -48,6 +48,9 @@ export class SidebarComponent implements OnInit{
     this.service.getAll().subscribe( {
       next: data => {
         this.rooms = data;
+        if(this.rooms.length === 0) {
+          return;
+        }
 
         let temp;
         if(this.lastRoom) {
