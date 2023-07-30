@@ -10,7 +10,8 @@ export class Globals {
     if(window.location.port === '4200'){
       return 'http://localhost:8080';
     } else {
-      return window.location.protocol + '//' + window.location.host + window.location.pathname;
+      const temp = window.location.protocol + '//' + window.location.host;// + window.location.pathname;
+      return temp;
     }
   }
 }
