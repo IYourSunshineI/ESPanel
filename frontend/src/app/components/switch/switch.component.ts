@@ -11,11 +11,6 @@ export class SwitchComponent {
   @Input() checked: boolean;
   @Output() valueChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(
-    private espService: EspService
-  ) {
-  }
-
   click(event: any) {
     this.valueChanged.emit(event.target.checked);
   }
