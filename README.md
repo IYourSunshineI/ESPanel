@@ -14,4 +14,4 @@ The application is not perfect yet, but it fills my needs.
 Please feel free to branch and adapt it for your needs ^^.
 
 
-![image](https://github.com/IYourSunshineI/ESPanel/assets/91211142/b709632b-3cd9-4f4d-98ff-3d2eeac3f8d2)
+![image](https://github.com/IYourSunshineI/ESPanel/blob/master/screeni.PNG)
