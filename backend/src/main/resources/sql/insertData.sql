@@ -1,22 +1,22 @@
 DELETE
 FROM DIMMER_MODULE;
-/*WHERE id < 1;*/
+WHERE id < 0;
 
 DELETE
 FROM RGB_MODULE;
-/*WHERE id < 1;*/
+WHERE id < 0;
 
 DELETE
 FROM KNOB_MODULE;
-/*WHERE id < 1;*/
+WHERE id < 0;
 
 DELETE
 FROM ESP_GROUP;
-/*WHERE id < 1;*/
+WHERE id < 0;
 
 DELETE
 FROM ROOM;
-/*WHERE id < 1;*/
+WHERE id < 0;
 
 INSERT INTO ROOM (id, title)
 VALUES (-1, 'Room 1'),
