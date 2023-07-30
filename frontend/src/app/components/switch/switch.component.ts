@@ -19,17 +19,4 @@ export class SwitchComponent {
   click(event: any) {
     this.valueChanged.emit(event.target.checked);
   }
-
-  //TEMP !!!!
-  //valueChanged(event: any): void{
-  //  console.log(event.target.checked);
-  //  this.espService.update(event.target.checked).subscribe({
-  //    next: data => {
-  //      console.log(data);
-  //    },
-  //    error: err => {
-  //      console.error(err);
-  //    }
-  //  })
-  //}
 }
